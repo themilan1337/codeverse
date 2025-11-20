@@ -11,6 +11,7 @@
       
       <div class="menu-overlay-content">
         <div class="menu-media-wrapper">
+          <img src="https://static.tildacdn.pro/tild6262-3861-4461-b164-616139663664/photo_2023-05-24_17-.jpg" alt="Menu background" />
         </div>
         <div class="menu-content-wrapper">
           <div class="menu-content-main">
@@ -28,12 +29,12 @@
             </div>
           </div>
           <div class="menu-footer">
-            <div class="menu-col">
-              <p>Astana, Kazakhstan</p>
+            <div class="menu-col ">
+              <p class="!font-mono">Turkistan Region, Kazakhstan</p>
             </div>
             <div class="menu-col">
-              <p>+7 777 123 4567</p>
-              <p>hello@indrive.com</p>
+              <p>42.3205° N, 69.5876° E</p>
+              <p>shymkentvisit@gmail.com</p>
             </div>
           </div>
         </div>
