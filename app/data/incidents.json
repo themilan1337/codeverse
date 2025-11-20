@@ -1,0 +1,22 @@
+[
+    {
+        "id": 101,
+        "type": "crowd",
+        "severity": "medium",
+        "coords": [
+            76.9,
+            43.2
+        ],
+        "message": "High crowd density at Green Bazaar"
+    },
+    {
+        "id": 102,
+        "type": "weather",
+        "severity": "low",
+        "coords": [
+            77.1,
+            43.1
+        ],
+        "message": "Light rain expected"
+    }
+]

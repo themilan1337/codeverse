@@ -1,14 +1,32 @@
 <template>
-  <div class="min-h-screen w-full relative overflow-hidden">
+  <div class="min-h-screen w-full relative overflow-hidden pb-24">
     <UiTopNav />
     
     <main>
       <UiHero />
       
-      <!-- Placeholder for Cards (Step 2) -->
+      <!-- Tour Cards Section -->
       <div class="px-6 md:px-12 py-8">
-        <div class="w-full h-96 border-2 border-dashed border-gray-300 rounded-3xl flex items-center justify-center text-gray-400">
-          Cards Section (Coming in Step 2)
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <UiTourCard 
+            v-for="tour in tours" 
+            :key="tour.id"
+            :id="tour.id"
+            :title="tour.title"
+            :image="tour.image"
+          />
+        </div>
+      </div>
+
+      <!-- Map Section (Demo) -->
+      <div class="px-6 md:px-12 py-12">
+        <div class="w-full h-[500px] relative">
+           <MapSimpleMap />
+           
+           <!-- Safety Badge Overlay -->
+           <div class="absolute top-6 left-6 z-10">
+             <SafetySafetyBadge :score="store.safetyScore" />
+           </div>
         </div>
       </div>
     </main>
@@ -18,5 +36,9 @@
 </template>
 
 <script setup lang="ts">
-// Components are auto-imported by Nuxt
+import toursData from '../data/tours.json'
+import { useMainStore } from '../store'
+
+const tours = toursData
+const store = useMainStore()
 </script>

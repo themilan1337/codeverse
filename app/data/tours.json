@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "title": "Three lakes tour (Kolsay, Kaindy and Big Almaty lake)",
+        "image": "/assets/images/card1.jpg",
+        "description": "Visit the pearls of the Northern Tien Shan.",
+        "coords": [
+            77.0,
+            43.0
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Visit all attractions of the capital of Kazakhstan",
+        "image": "/assets/images/card2.jpg",
+        "description": "Modern architecture and nomadic heritage.",
+        "coords": [
+            71.4,
+            51.1
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Camel rides on the steppe and overnights in yurts",
+        "image": "/assets/images/card3.jpg",
+        "description": "Authentic experience in the heart of the steppe.",
+        "coords": [
+            69.0,
+            42.0
+        ]
+    }
+]
