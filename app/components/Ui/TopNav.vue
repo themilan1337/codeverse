@@ -70,8 +70,8 @@ onUnmounted(() => {
     <div class="flex items-center gap-2 md:gap-8">
       <!-- Desktop Links -->
       <div class="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-700">
-        <NuxtLink to="#" class="hover:text-accent-red transition-colors">Visa and entry</NuxtLink>
-        <NuxtLink to="#" class="hover:text-accent-red transition-colors">History</NuxtLink>
+        <NuxtLink to="/visa" class="hover:text-accent-red transition-colors">Visa and entry</NuxtLink>
+        <NuxtLink to="/history" class="hover:text-accent-red transition-colors">History</NuxtLink>
         <NuxtLink to="#" class="hover:text-accent-red transition-colors">Attractions [236]</NuxtLink>
       </div>
 

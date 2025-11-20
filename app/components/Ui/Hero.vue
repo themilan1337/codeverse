@@ -22,7 +22,7 @@
             :placeholder="[50, 25, 75, 5]"
             class="inline-block h-[0.8em] w-auto -mt-4 mx-2 align-middle" 
           />
-          & Turkestan
+          & Turkistan
         </h1>
 
         <div class="flex flex-wrap items-center gap-4 md:gap-6">
@@ -46,7 +46,7 @@
           <!-- Background Image -->
           <NuxtImg 
             src="https://informburo.kz/storage/photos/72/main/iGSh3bFfQAuNU9dytwSSsnRRabvtXCLjCi7D2eGa.jpg" 
-            alt="Shymkent & Turkestan" 
+            alt="Shymkent & Turkistan" 
             loading="eager"
             decoding="async"
             fetchpriority="high"
@@ -60,7 +60,7 @@
           <!-- Content -->
           <div class="relative z-10 h-full flex flex-col justify-end p-6 md:p-10 gap-6">
             <h2 class="text-2xl md:text-3xl text-white leading-tight font-bold drop-shadow-md">
-              Experience the warmth of the South. From the spiritual domes of Turkestan to the vibrant streets of Shymkent.
+              Experience the warmth of the South. From the spiritual domes of Turkistan to the vibrant streets of Shymkent.
             </h2>
             
             <div>

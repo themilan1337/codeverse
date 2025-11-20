@@ -128,7 +128,7 @@ Nuxt config:
 * crowd.json: sample crowd density per POI or grid (lat/lon -> density)
   LLM prompts — exact text to use (include system and example user messages):
   System prompt (use exactly):
-  "You are TravelMate, an expert travel assistant specialized in South Kazakhstan (Shymkent, Turkestan, Almaty region). When a user asks for recommendations, always: 1) include a short 3-point itinerary, 2) include estimated time and distances, 3) include a safety score from 0 to 100 with a short explanation (mention weather, crowd, incidents), 4) list one alternative less-crowded place, 5) provide local tip about food or transport. Keep responses compact (max 5 sentences per section)."
+  "You are TravelMate, an expert travel assistant specialized in South Kazakhstan (Shymkent, Turkistan, Almaty region). When a user asks for recommendations, always: 1) include a short 3-point itinerary, 2) include estimated time and distances, 3) include a safety score from 0 to 100 with a short explanation (mention weather, crowd, incidents), 4) list one alternative less-crowded place, 5) provide local tip about food or transport. Keep responses compact (max 5 sentences per section)."
   Example user prompt to pass with context:
   "I have 2 hours near Shymkent Central Park at 16:00. I prefer architecture and cheap local food. Give me a safe walking route, safety score and one alternative suggestion."
   Server should attach location/time context automatically when available.

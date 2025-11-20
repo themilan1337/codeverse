@@ -27,10 +27,10 @@
               <NuxtImg src="/assets/images/shymkent_logo.png" alt="Shymkent" loading="eager" decoding="async"
                 fetchpriority="high" :placeholder="[50, 25, 75, 5]"
                 class="inline-block h-[0.8em] w-auto -mt-1 mx-2 align-middle" />
-              & Turkestan
+              & Turkistan
             </h1>
             <p class="text-lg text-gray-600 max-w-xl mt-8 mx-auto">
-              Let AI craft a personalized itinerary for Shymkent and Turkestan based on your unique preferences.
+              Let AI craft a personalized itinerary for Shymkent and Turkistan based on your unique preferences.
             </p>
           </div>
 
@@ -207,7 +207,7 @@
               </svg>
             </div>
             <h3 class="text-3xl font-display font-bold text-text-main">Your Journey Awaits</h3>
-            <p class="text-gray-500">Here's your personalized itinerary for Shymkent & Turkestan</p>
+            <p class="text-gray-500">Here's your personalized itinerary for Shymkent & Turkistan</p>
           </div>
 
           <!-- AI Response Content -->
