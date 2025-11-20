@@ -37,7 +37,7 @@ onMounted(() => {
 
   map.value = new mapboxgl.Map({
     container: mapContainer.value,
-    style: 'mapbox://styles/mapbox/light-v11',
+    style: 'mapbox://styles/milan1337/cmfibsuq8003s01s6cslgb9z0',
     center: props.center || [69.5901, 42.3417], // Default to Shymkent
     zoom: props.zoom || 10
   })

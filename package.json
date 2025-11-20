@@ -17,6 +17,7 @@
     "@tailwindcss/vite": "^4.1.17",
     "@types/markdown-it": "^14.1.2",
     "eslint": "^9.39.1",
+    "gsap": "^3.13.0",
     "mapbox-gl": "^3.16.0",
     "markdown-it": "^14.1.0",
     "nuxt": "^4.2.1",

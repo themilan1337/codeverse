@@ -1,5 +1,9 @@
 <template>
+  <Menu />
+
+
   <div class="min-h-screen w-full relative overflow-hidden pb-24">
+
     <UiTopNav />
     
     <main>
@@ -39,6 +43,7 @@
 
 <script setup lang="ts">
 import toursData from '../data/tours.json'
+import Menu from "~/components/Ui/Menu.vue";
 import { useMainStore } from '../store'
 
 const tours = toursData
