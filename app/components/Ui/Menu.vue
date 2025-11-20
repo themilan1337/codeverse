@@ -1,14 +1,14 @@
 <template>
   <nav class="menu-nav">
-    <div class="menu-bar">
-      <div class="menu-toggle-btn" @click="toggleMenu" :class="{ 'menu-open': isMenuOpen }">
-        <div class="menu-hamburger-icon" :class="{ active: isMenuOpen }">
+    <div class="menu-overlay" :class="{ active: isMenuOpen }">
+      <!-- Close Button -->
+      <div class="menu-close-btn" @click="closeMenu">
+        <div class="menu-close-icon">
           <span></span>
           <span></span>
         </div>
       </div>
-    </div>
-    <div class="menu-overlay" :class="{ active: isMenuOpen }">
+      
       <div class="menu-overlay-content">
         <div class="menu-media-wrapper">
         </div>
@@ -54,7 +54,6 @@ let splitTextByContainer = []
 let menuOverlay = null
 let menuOverlayContainer = null
 let menuMediaWrapper = null
-let menuToggleLabel = null
 
 // Dynamically import SplitText
 if (process.client) {
@@ -80,12 +79,7 @@ const openMenu = () => {
 
   const tl = gsap.timeline()
 
-  tl.to(menuToggleLabel, {
-    y: "-110%",
-    duration: 1,
-    ease: "power4.inOut",
-  })
-  .to(menuOverlay, {
+  tl.to(menuOverlay, {
     clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
     duration: 1,
     ease: "power4.inOut",
@@ -132,11 +126,6 @@ const closeMenu = () => {
   })
   .to(menuOverlayContainer, {
     yPercent: -50,
-    duration: 1,
-    ease: "power4.inOut",
-  }, "<")
-  .to(menuToggleLabel, {
-    y: "0%",
     duration: 1,
     ease: "power4.inOut",
   }, "<")
@@ -190,7 +179,6 @@ onMounted(async () => {
   menuOverlay = document.querySelector('.menu-overlay')
   menuOverlayContainer = document.querySelector('.menu-overlay-content')
   menuMediaWrapper = document.querySelector('.menu-media-wrapper')
-  menuToggleLabel = document.querySelector('.menu-toggle-label p')
 
   await initializeSplitText()
 })
@@ -203,6 +191,11 @@ onUnmounted(() => {
       })
     })
   }
+})
+
+// Expose toggleMenu so it can be called from parent components
+defineExpose({
+  toggleMenu
 })
 </script>
 
@@ -218,7 +211,7 @@ onUnmounted(() => {
   z-index: 99999;
 }
 
-.menu-bar {
+.menu-close-btn {
   position: fixed;
   top: 0;
   right: 0;
@@ -227,37 +220,11 @@ onUnmounted(() => {
   justify-content: flex-end;
   align-items: center;
   pointer-events: all;
-  color: #5f5f5f;
   z-index: 100001;
-  gap: 1rem;
-}
-
-.menu-toggle-btn {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
   cursor: pointer;
 }
 
-.menu-toggle-label {
-  overflow: hidden;
-}
-
-.menu-toggle-label p {
-  position: relative;
-  transform: translateY(0%);
-  will-change: transform;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: white;
-  transition: color 0.3s ease;
-}
-
-.menu-toggle-btn.menu-open .menu-toggle-label p {
-  color: #333;
-}
-
-.menu-hamburger-icon {
+.menu-close-icon {
   position: relative;
   width: 2.5rem;
   height: 2.5rem;
@@ -265,44 +232,30 @@ onUnmounted(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.3rem;
-  border: 1px solid black;
+  border: 1px solid #333;
   border-radius: 100%;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-.menu-toggle-btn.menu-open .menu-hamburger-icon {
-  border-color: black;
+.menu-close-icon:hover {
+  background-color: #f3f4f6;
+  transform: rotate(90deg);
 }
 
-.menu-hamburger-icon span {
+.menu-close-icon span {
   position: absolute;
   width: 15px;
   height: 1.25px;
-  background-color: black;
-  transition: all 0.75s cubic-bezier(0.87, 0, 0.13, 1);
-  transform-origin: center;
-  will-change: transform;
-}
-
-.menu-toggle-btn.menu-open .menu-hamburger-icon span {
   background-color: #333;
+  transition: all 0.3s ease;
 }
 
-.menu-hamburger-icon span:nth-child(1) {
-  transform: translateY(-3px);
+.menu-close-icon span:nth-child(1) {
+  transform: rotate(45deg);
 }
 
-.menu-hamburger-icon span:nth-child(2) {
-  transform: translateY(3px);
-}
-
-.menu-hamburger-icon.active span:nth-child(1) {
-  transform: translateY(0) rotate(45deg) scaleX(1.05);
-}
-
-.menu-hamburger-icon.active span:nth-child(2) {
-  transform: translateY(0) rotate(-45deg) scaleX(1.05);
+.menu-close-icon span:nth-child(2) {
+  transform: rotate(-45deg);
 }
 
 .menu-overlay,
@@ -434,19 +387,19 @@ onUnmounted(() => {
     font-size: 1.25rem;
   }
 
-  .menu-bar {
+  .menu-close-btn {
     padding: 1rem;
   }
 }
 
 @media (max-width: 768px) {
-  .menu-bar {
+  .menu-close-btn {
     top: 1rem;
     right: 1rem;
     padding: 0;
   }
 
-  .menu-hamburger-icon {
+  .menu-close-icon {
     width: 2.5rem;
     height: 2.5rem;
   }

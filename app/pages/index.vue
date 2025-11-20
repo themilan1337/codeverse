@@ -1,10 +1,10 @@
 <template>
-  <Menu />
+  <Menu ref="menuRef" />
 
 
   <div class="min-h-screen w-full relative overflow-hidden pb-24">
 
-    <UiTopNav />
+    <UiTopNav :menu-ref="menuRef" />
     
     <main>
       <UiHero />
@@ -42,10 +42,12 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import toursData from '../data/tours.json'
 import Menu from "~/components/Ui/Menu.vue";
 import { useMainStore } from '../store'
 
+const menuRef = ref(null)
 const tours = toursData
 const store = useMainStore()
 </script>

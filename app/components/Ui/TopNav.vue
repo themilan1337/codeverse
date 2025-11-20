@@ -5,6 +5,11 @@ const localTime = ref('')
 const shymkentTime = ref('')
 let timer: ReturnType<typeof setInterval>
 
+// Accept menuRef as prop
+const props = defineProps<{
+  menuRef: any
+}>()
+
 function updateTime() {
   const now = new Date()
   
@@ -22,6 +27,12 @@ function updateTime() {
     minute: '2-digit', 
     second: '2-digit' 
   })
+}
+
+function handleMenuToggle() {
+  if (props.menuRef && props.menuRef.toggleMenu) {
+    props.menuRef.toggleMenu()
+  }
 }
 
 onMounted(() => {
@@ -63,7 +74,10 @@ onUnmounted(() => {
       </button>
 
       <!-- Menu Button -->
-      <button class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer">
+      <button 
+        @click="handleMenuToggle"
+        class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+      >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="6" x2="21" y2="6"></line>
