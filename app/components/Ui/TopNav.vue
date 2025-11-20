@@ -46,12 +46,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <nav class="w-full py-6 px-6 md:px-12 flex items-center justify-between bg-transparent relative z-10">
+  <nav class="w-full py-4 px-4 md:py-6 md:px-12 flex items-center justify-between bg-transparent relative z-10">
     <!-- Logo -->
     <div class="flex items-center gap-2">
       <NuxtLink to="/">
         <NuxtImg 
-          class="w-16 h-auto" 
+          class="w-12 md:w-16 h-auto" 
           src="https://upload.wikimedia.org/wikipedia/commons/6/66/Shymkent_logo.svg" 
           alt=""
           loading="eager"
@@ -67,7 +67,7 @@ onUnmounted(() => {
     </div>
 
     <!-- Right Actions -->
-    <div class="flex items-center gap-8">
+    <div class="flex items-center gap-2 md:gap-8">
       <!-- Desktop Links -->
       <div class="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-700">
         <NuxtLink to="#" class="hover:text-accent-red transition-colors">Visa and entry</NuxtLink>
@@ -76,7 +76,7 @@ onUnmounted(() => {
       </div>
 
       <!-- CTA Button -->
-      <button class="bg-accent-red hover:bg-accent-hover text-white px-6 py-2.5 rounded-full text-sm font-medium transition-colors cursor-pointer">
+      <button class="bg-accent-red hover:bg-accent-hover text-white px-4 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-colors cursor-pointer">
         Start the journey
       </button>
 
