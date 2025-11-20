@@ -29,7 +29,7 @@
           <p class="text-lg text-gray-600 group-hover:text-gray-300 transition-colors mb-6">
             Citizens of more than 70 countries can visit Kazakhstan without a visa for stays of up to 30 days. This includes EU countries, USA, Canada, UK, and many others.
           </p>
-          <a href="#" class="inline-flex items-center text-accent-red font-medium text-lg group-hover:text-white transition-colors">
+          <a href="https://www.gov.kz/memleket/entities/mfa/press/article/details/6764?lang=en" class="inline-flex items-center text-accent-red font-medium text-lg group-hover:text-white transition-colors">
             Check your country
             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
           </a>
@@ -48,7 +48,7 @@
           <p class="text-lg text-gray-600 group-hover:text-gray-300 transition-colors mb-6">
             If you need a visa, you can easily apply for an electronic visa (e-Visa) through the official migration portal. The process is quick and fully online.
           </p>
-          <a href="#" class="inline-flex items-center text-accent-red font-medium text-lg group-hover:text-white transition-colors">
+          <a href="https://www.gov.kz/memleket/entities/mfa-kuala-lumpur/press/article/details/139561?lang=en" class="inline-flex items-center text-accent-red font-medium text-lg group-hover:text-white transition-colors">
             Apply Online
             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
           </a>
@@ -58,7 +58,17 @@
       <!-- Important Info -->
       <div class="bg-black text-white rounded-[2.5rem] p-8 md:p-16 relative overflow-hidden">
         <div class="relative z-10">
-          <h2 class="text-3xl md:text-5xl font-bold mb-8">Important to know</h2>
+          <h2 class="text-3xl md:text-5xl font-bold mb-8">
+            <NuxtImg 
+            src="/assets/images/shymkent_logo.png" 
+            alt="Shymkent" 
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+            :placeholder="[50, 25, 75, 5]"
+            class="inline-block h-[0.8em] w-auto -mt-2 mr-2 align-middle" 
+            />
+            Important to know</h2>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
               <h4 class="text-xl font-bold mb-4 text-gray-300">Registration</h4>
