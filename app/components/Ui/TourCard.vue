@@ -1,5 +1,5 @@
 <template>
-  <div class="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-all duration-500">
+  <NuxtLink :to="`/destination/${id}`" class="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-all duration-500 block">
     <!-- Image -->
     <NuxtImg 
       :src="image" 
@@ -27,12 +27,12 @@
         </svg>
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">
 defineProps<{
-  id: number
+  id: string | number
   title: string
   image: string
 }>()

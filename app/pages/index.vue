@@ -167,11 +167,14 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import toursData from '../data/tours.json'
+import destinationsData from '~/data/destinations.json'
 import Menu from "~/components/Ui/Menu.vue";
 
 const menuRef = ref(null)
-const tours = toursData
+const tours = destinationsData.slice(0, 3).map(d => ({
+  ...d,
+  title: `${d.title}: ${d.subtitle}`
+}))
 </script>
 
 <style scoped>

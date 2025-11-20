@@ -37,115 +37,27 @@
 
       <!-- Attractions Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
-        
-        <!-- Card 1: Mausoleum -->
-        <div class="group relative h-[500px] rounded-[2.5rem] overflow-hidden cursor-pointer">
+        <NuxtLink 
+          v-for="dest in destinations" 
+          :key="dest.id"
+          :to="`/destination/${dest.id}`"
+          class="group relative h-[500px] rounded-[2.5rem] overflow-hidden cursor-pointer"
+        >
           <NuxtImg 
-            src="/assets/images/turkestan.webp"
+            :src="dest.image"
             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             loading="lazy"
             :placeholder="[50, 25, 75, 5]"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
           <div class="absolute bottom-0 left-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-            <span class="text-accent-red font-medium mb-2 block">Turkestan</span>
-            <h3 class="text-3xl font-bold text-white mb-4">Khoja Ahmed Yasawi</h3>
-            <p class="text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-              A UNESCO World Heritage site and a masterpiece of medieval architecture.
+            <span class="text-accent-red font-medium mb-2 block">{{ dest.tags[0] }}</span>
+            <h3 class="text-3xl font-bold text-white mb-4">{{ dest.title }}</h3>
+            <p class="text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 line-clamp-2">
+              {{ dest.description }}
             </p>
           </div>
-        </div>
-
-        <!-- Card 2: Akmeshit Cave -->
-        <div class="group relative h-[500px] rounded-[2.5rem] overflow-hidden cursor-pointer">
-          <NuxtImg 
-            src="/assets/images/cave.jpg"
-            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            loading="lazy"
-            :placeholder="[50, 25, 75, 5]"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-          <div class="absolute bottom-0 left-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-            <span class="text-accent-red font-medium mb-2 block">Nature</span>
-            <h3 class="text-3xl font-bold text-white mb-4">Akmeshit Cave</h3>
-            <p class="text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-              A mysterious underground mosque with its own microclimate and trees growing inside.
-            </p>
-          </div>
-        </div>
-
-        <!-- Card 3: Dendropark -->
-        <div class="group relative h-[500px] rounded-[2.5rem] overflow-hidden cursor-pointer">
-          <NuxtImg 
-            src="/assets/images/dendro.jpg"
-            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            loading="lazy"
-            :placeholder="[50, 25, 75, 5]"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-          <div class="absolute bottom-0 left-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-            <span class="text-accent-red font-medium mb-2 block">Shymkent</span>
-            <h3 class="text-3xl font-bold text-white mb-4">Dendropark</h3>
-            <p class="text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-              A massive arboretum perfect for walks, cycling, and enjoying nature in the city.
-            </p>
-          </div>
-        </div>
-
-         <!-- Card 4: Citadel -->
-        <div class="group relative h-[500px] rounded-[2.5rem] overflow-hidden cursor-pointer md:col-span-2 lg:col-span-1">
-          <NuxtImg 
-            src="/assets/images/citadel.jpg"
-            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            loading="lazy"
-            :placeholder="[50, 25, 75, 5]"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-          <div class="absolute bottom-0 left-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-             <span class="text-accent-red font-medium mb-2 block">History</span>
-            <h3 class="text-3xl font-bold text-white mb-4">Ancient Citadel</h3>
-            <p class="text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-              The heart of the ancient city, recently restored to showcase layers of history.
-            </p>
-          </div>
-        </div>
-        
-         <!-- Card 5: Sayram -->
-        <div class="group relative h-[500px] rounded-[2.5rem] overflow-hidden cursor-pointer">
-           <NuxtImg 
-            src="/assets/images/sayram.jpg"
-            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            loading="lazy"
-            :placeholder="[50, 25, 75, 5]"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-          <div class="absolute bottom-0 left-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-             <span class="text-accent-red font-medium mb-2 block">Culture</span>
-            <h3 class="text-3xl font-bold text-white mb-4">Sayram</h3>
-            <p class="text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-              One of the oldest settlements, filled with sacred mausoleums and traditional life.
-            </p>
-          </div>
-        </div>
-
-         <!-- Card 6: Otrar -->
-        <div class="group relative h-[500px] rounded-[2.5rem] overflow-hidden cursor-pointer">
-           <NuxtImg 
-            src="/assets/images/otrar.jpeg"
-             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-             loading="lazy"
-             :placeholder="[50, 25, 75, 5]"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-          <div class="absolute bottom-0 left-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-             <span class="text-accent-red font-medium mb-2 block">Archaeology</span>
-            <h3 class="text-3xl font-bold text-white mb-4">Otrar</h3>
-            <p class="text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-              The ruins of the legendary city that was besieged by Genghis Khan.
-            </p>
-          </div>
-        </div>
-
+        </NuxtLink>
       </div>
 
       <!-- CTA Section -->
@@ -168,5 +80,7 @@
 </template>
 
 <script setup>
-// No special script needed
+import destinationsData from '~/data/destinations.json'
+
+const destinations = destinationsData
 </script>

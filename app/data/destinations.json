@@ -1,0 +1,151 @@
+[
+    {
+        "id": "turkestan",
+        "title": "Turkestan",
+        "subtitle": "The Spiritual Capital & Yasawi Mausoleum",
+        "description": "Turkestan is one of Kazakhstan's most historic cities, with an archaeological record dating back to the 4th century. It was a major trade center on the Silk Road and is now the spiritual capital of the Turkic world. The centerpiece is the Mausoleum of Khoja Ahmed Yasawi, a UNESCO World Heritage site.",
+        "image": "/assets/images/turkestan1.jpg",
+        "images": [
+            "/assets/images/turkestan1.jpg",
+            "/assets/images/turkestan.jpg"
+        ],
+        "tags": [
+            "History",
+            "Culture",
+            "Spiritual"
+        ],
+        "location": "Turkestan Region",
+        "highlights": [
+            "Mausoleum of Khoja Ahmed Yasawi",
+            "Karavan-Saray",
+            "Hilvet Underground Mosque"
+        ]
+    },
+    {
+        "id": "shymkent",
+        "title": "Shymkent",
+        "subtitle": "City Vibes: Citadel & Old Town",
+        "description": "Shymkent is a vibrant metropolis with a warm southern soul. It blends ancient history with modern energy. From the bustling bazaars to the ancient citadel, Shymkent offers a unique experience of Kazakh hospitality and culture.",
+        "image": "/assets/images/shymkent_city.jpg",
+        "images": [
+            "/assets/images/shymkent_city.jpg",
+            "/assets/images/citadel.jpg"
+        ],
+        "tags": [
+            "City",
+            "Vibes",
+            "Modern"
+        ],
+        "location": "Shymkent City",
+        "highlights": [
+            "Old Town Citadel",
+            "Arbat",
+            "Independence Park"
+        ]
+    },
+    {
+        "id": "otrar",
+        "title": "Ancient Otrar",
+        "subtitle": "Arystan Bab Mausoleum & Ruins",
+        "description": "Otrar was a ghost town with a history of 2,000 years. It was a major center of trade and craft on the Silk Road. Today, the ruins of Otrar tell the story of the Mongol invasion and the resilience of the people.",
+        "image": "/assets/images/otrar.jpg",
+        "images": [
+            "/assets/images/otrar.jpg"
+        ],
+        "tags": [
+            "Archaeology",
+            "History",
+            "Ruins"
+        ],
+        "location": "Turkestan Region",
+        "highlights": [
+            "Otrar Tobe Excavations",
+            "Arystan Bab Mausoleum",
+            "Ancient Bathhouse"
+        ]
+    },
+    {
+        "id": "akmeshit",
+        "title": "Akmeshit Cave",
+        "subtitle": "Nature's Underground Wonder",
+        "description": "Akmeshit Cave is a unique natural monument. It is a huge hollow with its own microclimate, where trees grow inside. Legend has it that women and children hid here during the Dzungar invasion.",
+        "image": "/assets/images/cave.jpg",
+        "images": [
+            "/assets/images/cave.jpg"
+        ],
+        "tags": [
+            "Nature",
+            "Adventure",
+            "Cave"
+        ],
+        "location": "Turkestan Region",
+        "highlights": [
+            "Underground Trees",
+            "Natural Dome",
+            "Sacred Atmosphere"
+        ]
+    },
+    {
+        "id": "dendropark",
+        "title": "Dendropark",
+        "subtitle": "Green Oasis in Shymkent",
+        "description": "The Shymkent Dendropark is a massive arboretum showcasing a diverse collection of flora. It's a perfect place for a relaxing walk, a boat ride on the lake, or simply enjoying the fresh air.",
+        "image": "/assets/images/dendro.jpg",
+        "images": [
+            "/assets/images/dendro.jpg"
+        ],
+        "tags": [
+            "Nature",
+            "Park",
+            "Relaxation"
+        ],
+        "location": "Shymkent City",
+        "highlights": [
+            "Lake with Swans",
+            "Rare Tree Species",
+            "Walking Trails"
+        ]
+    },
+    {
+        "id": "sayram",
+        "title": "Sayram",
+        "subtitle": "The City of Countless Mausoleums",
+        "description": "Sayram is one of the oldest settlements in Kazakhstan, dating back over 3,000 years. It is known as the birthplace of Khoja Ahmed Yasawi and is dotted with numerous mausoleums of Islamic scholars and saints.",
+        "image": "/assets/images/sayram.jpg",
+        "images": [
+            "/assets/images/sayram.jpg"
+        ],
+        "tags": [
+            "Culture",
+            "History",
+            "Religion"
+        ],
+        "location": "Shymkent Region",
+        "highlights": [
+            "Mausoleum of Ibrahim Ata",
+            "Mausoleum of Karashash Ana",
+            "Medieval Minaret"
+        ]
+    },
+    {
+        "id": "citadel",
+        "title": "Ancient Citadel",
+        "subtitle": "Heart of Old Shymkent",
+        "description": "The Ancient Citadel of Shymkent is an archaeological park located in the heart of the modern city. It reveals the layers of history from the Kangju period to the 19th century.",
+        "image": "/assets/images/citadel.jpg",
+        "images": [
+            "/assets/images/citadel.jpg"
+        ],
+        "tags": [
+            "History",
+            "Archaeology",
+            "City"
+        ],
+        "location": "Shymkent City",
+        "highlights": [
+            "Restored Fortress Walls",
+            "Museum of Archaeology",
+            "Panoramic Views"
+        ]
+    }
+]
