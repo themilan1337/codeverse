@@ -8,4 +8,7 @@ const schema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now }
 }, { timestamps: true })
 
+// Disable buffering for this model
+schema.set('bufferCommands', false);
+
 export const GuestbookEntry = mongoose.models.GuestbookEntry || mongoose.model('GuestbookEntry', schema)

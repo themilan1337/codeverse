@@ -1,8 +1,18 @@
 import { defineEventHandler } from 'h3'
 import { GuestbookEntry } from '../models/GuestbookEntry'
+import mongoose from 'mongoose'
 
 export default defineEventHandler(async (event) => {
     try {
+        // Ensure connection is ready
+        if (mongoose.connection.readyState !== 1) {
+            const config = useRuntimeConfig()
+            const uri = config.mongodbUri || process.env.MONGODB_URI
+            if (uri) {
+                await mongoose.connect(uri, { bufferCommands: false })
+            }
+        }
+
         const entries = await GuestbookEntry.find().sort({ createdAt: -1 }).limit(100)
         return entries.map(entry => ({
             id: entry._id,
