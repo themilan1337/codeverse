@@ -13,7 +13,7 @@
         </div>
         <div>
           <h3 class="font-bold text-lg mb-2">Location</h3>
-          <p class="text-gray-600">Turkistan Region, Kazakhstan</p>
+          <p class="text-gray-600">Turkestan Region, Kazakhstan</p>
           <p class="text-gray-500">42.3205° N, 69.5876° E</p>
         </div>
       </div>

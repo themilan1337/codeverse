@@ -55,7 +55,7 @@
             <h3 class="text-4xl font-bold mb-6">The Silk Road Hub</h3>
             <p class="text-lg text-gray-600 leading-relaxed">
               As a vital stop on the Silk Road, Shymkent flourished. Merchants from China, Persia, and Europe exchanged goods, ideas, and cultures here. 
-              The city became known for its bustling bazaars, skilled artisans, and as a gateway to the spiritual center of Turkistan.
+              The city became known for its bustling bazaars, skilled artisans, and as a gateway to the spiritual center of Turkestan.
             </p>
           </div>
         </div>

@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
   })
 
   // Construct the prompt based on user preferences
-  const prompt = `You are a luxury travel expert specializing in Shymkent and Turkistan, Kazakhstan. Create a premium, detailed, and personalized travel itinerary based on the following preferences:
+  const prompt = `You are a luxury travel expert specializing in Shymkent and Turkestan, Kazakhstan. Create a premium, detailed, and personalized travel itinerary based on the following preferences:
 
 **Season:** ${season}
 **Interests:** ${preferences.join(', ')}
@@ -28,7 +28,7 @@ Please create a comprehensive itinerary that includes:
 
 1. **Welcome & Overview** - A captivating introduction to what makes this journey special
 2. **Day-by-Day Itinerary** - Detailed daily plans (suggest 3-5 days)
-3. **Must-Visit Attractions** - Key locations in both Shymkent and Turkistan
+3. **Must-Visit Attractions** - Key locations in both Shymkent and Turkestan
 4. **Local Cuisine Recommendations** - Authentic dining experiences
 5. **Cultural Insights** - Important customs and traditions
 6. **Practical Tips** - Transportation, best times to visit, what to pack
@@ -45,7 +45,7 @@ Make this feel premium, sophisticated, and tailored specifically to their prefer
       messages: [
         {
           role: 'system',
-          content: 'You are a luxury travel expert for Shymkent and Turkistan, Kazakhstan. You create beautiful, detailed, and personalized travel itineraries with proper markdown formatting.'
+          content: 'You are a luxury travel expert for Shymkent and Turkestan, Kazakhstan. You create beautiful, detailed, and personalized travel itineraries with proper markdown formatting.'
         },
         {
           role: 'user',

@@ -5,7 +5,7 @@
       Discover the beauty and culture of Southern Kazakhstan through our innovative travel platform.
     </p>
     <p class="text-lg text-gray-500 max-w-3xl">
-      We're dedicated to making your journey through Shymkent and Turkistan unforgettable with
+      We're dedicated to making your journey through Shymkent and Turkestan unforgettable with
       cutting-edge technology and local expertise.
     </p>
 

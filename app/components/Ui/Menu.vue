@@ -36,7 +36,7 @@
           </div>
           <div class="menu-footer">
             <div class="menu-col ">
-              <p class="!font-mono">Turkistan Region, Kazakhstan</p>
+              <p class="!font-mono">Turkestan Region, Kazakhstan</p>
             </div>
             <div class="menu-col">
               <p>42.3205° N, 69.5876° E</p>

@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
     }
 
     const prompt = `
-    You are an expert travel concierge specializing in luxury and culturally rich experiences in Shymkent and Turkistan, Kazakhstan.
+    You are an expert travel concierge specializing in luxury and culturally rich experiences in Shymkent and Turkestan, Kazakhstan.
     
     Create a personalized, premium travel itinerary based on the following user profile:
     - **Season**: ${season}
@@ -41,7 +41,7 @@ export default defineEventHandler(async (event) => {
         const completion = await openai.chat.completions.create({
             model: 'gpt-5.1',
             messages: [
-                { role: 'system', content: 'You are a premium travel assistant for Shymkent and Turkistan.' },
+                { role: 'system', content: 'You are a premium travel assistant for Shymkent and Turkestan.' },
                 { role: 'user', content: prompt },
             ],
             temperature: 0.7,
