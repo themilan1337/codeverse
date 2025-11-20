@@ -25,19 +25,25 @@ const slides = ref<SlideImage[]>([
     src: '/assets/images/shymkent_city.jpg',
     alt: 'Shymkent City',
     title: 'Modern Shymkent',
-    description: 'Experience the vibrant culture and modern energy of Southern Kazakhstan.'
+    description: 'Experience the vibrant culture, innovations, traditions and modern energy of South.'
+  },
+  {
+    src: '/assets/images/mountains.jpg',
+    alt: 'Mountains of Kazakhstan',
+    title: 'Majestic Landscapes',
+    description: 'Breathtaking views and serene nature await in the majestic mountains.'
   },
   {
     src: '/assets/images/citadel.jpg',
     alt: 'Ancient Citadel',
     title: 'Historic Landmarks',
-    description: 'Walk through centuries of history in our preserved ancient sites.'
+    description: 'Walk through centuries of history in our beautifully preserved ancient sites.'
   },
   {
     src: '/assets/images/sayram.jpg',
     alt: 'Sayram',
     title: 'Sacred Sayram',
-    description: 'Visit one of the oldest cities in Kazakhstan with unique spiritual heritage.'
+    description: 'Visit one of the oldest cities in Kazakhstan with its unique and incredibly rich spiritual heritage.'
   }
 ])
 
