@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed bottom-8 right-24 z-40">
+  <div class="fixed bottom-28 right-8 z-40">
     <!-- Chat Window -->
     <div 
       v-if="isOpen" 
@@ -21,13 +21,13 @@
       <div class="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50" ref="messagesContainer">
         <div v-for="(msg, idx) in messages" :key="idx" class="flex flex-col gap-1" :class="msg.role === 'user' ? 'items-end' : 'items-start'">
           <div 
-            class="max-w-[85%] p-3 rounded-2xl text-sm leading-relaxed"
+            class="max-w-[85%] p-3 rounded-2xl text-sm leading-relaxed prose prose-sm prose-p:my-1 prose-ul:my-1 prose-li:my-0"
             :class="msg.role === 'user' ? 'bg-accent-blue text-white rounded-br-none' : 'bg-white border border-gray-200 text-gray-800 rounded-bl-none shadow-sm'"
+            v-html="renderMessage(msg.content)"
           >
-            {{ msg.content }}
           </div>
         </div>
-        <div v-if="isLoading" class="flex items-start">
+        <div v-if="isLoading && !isStreaming" class="flex items-start">
            <div class="bg-white border border-gray-200 p-3 rounded-2xl rounded-bl-none shadow-sm flex gap-1">
              <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce"></span>
              <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce delay-75"></span>
@@ -69,15 +69,26 @@
 
 <script setup lang="ts">
 import { ref, nextTick } from 'vue'
+import MarkdownIt from 'markdown-it'
+
+const md = new MarkdownIt({
+  breaks: true,
+  linkify: true
+})
 
 const isOpen = ref(false)
 const input = ref('')
 const isLoading = ref(false)
+const isStreaming = ref(false)
 const messagesContainer = ref<HTMLElement | null>(null)
 
 const messages = ref([
-  { role: 'assistant', content: 'Hello! I am TravelMate. Ask me about Shymkent food, Turkestan history, or safety tips!' }
+  { role: 'assistant', content: 'Hello! I am **TravelMate**. Ask me about *Shymkent* food, *Turkestan* history, or safety tips!' }
 ])
+
+function renderMessage(content: string) {
+  return md.render(content)
+}
 
 async function sendMessage() {
   if (!input.value.trim()) return
@@ -89,20 +100,67 @@ async function sendMessage() {
   scrollToBottom()
 
   try {
-    const { data } = await useFetch<{ reply: string }>('/api/openai', {
+    const response = await fetch('/api/openai', {
       method: 'POST',
-      body: { prompt: userMsg }
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ prompt: userMsg })
     })
-    
-    if (data.value?.reply) {
-      messages.value.push({ role: 'assistant', content: data.value.reply })
-    } else {
-      messages.value.push({ role: 'assistant', content: 'Sorry, I am in demo mode. (API Key missing)' })
+
+    if (!response.body) {
+       messages.value.push({ role: 'assistant', content: 'Error: No response from server.' })
+       isLoading.value = false
+       return
     }
+
+    // Check if it's JSON (fallback) or Stream
+    const contentType = response.headers.get('content-type')
+    if (contentType && contentType.includes('application/json')) {
+       const data = await response.json()
+       messages.value.push({ role: 'assistant', content: data.reply || 'Error' })
+       isLoading.value = false
+       scrollToBottom()
+       return
+    }
+
+    // Handle Stream
+    isStreaming.value = true
+    const reader = response.body.getReader()
+    const decoder = new TextDecoder()
+    let assistantMsg = ''
+    messages.value.push({ role: 'assistant', content: '' })
+    const msgIndex = messages.value.length - 1
+
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+      
+      const chunk = decoder.decode(value)
+      const lines = chunk.split('\n')
+      
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          const dataStr = line.slice(6)
+          if (dataStr === '[DONE]') continue
+          try {
+            const data = JSON.parse(dataStr)
+            const content = data.choices[0]?.delta?.content || ''
+            assistantMsg += content
+            messages.value[msgIndex].content = assistantMsg
+            scrollToBottom()
+          } catch (e) {
+            // ignore parse errors for partial chunks
+          }
+        }
+      }
+    }
+
   } catch (e) {
     messages.value.push({ role: 'assistant', content: 'Error connecting to AI.' })
   } finally {
     isLoading.value = false
+    isStreaming.value = false
     scrollToBottom()
   }
 }
@@ -115,3 +173,22 @@ function scrollToBottom() {
   })
 }
 </script>
+
+<style>
+/* Markdown Styles */
+.prose p {
+  margin-bottom: 0.5em;
+}
+.prose strong {
+  font-weight: 600;
+  color: inherit;
+}
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.2em;
+}
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.2em;
+}
+</style>
