@@ -33,9 +33,9 @@
             </svg>
           </NuxtLink>
 
-          <button class="text-base md:text-lg font-medium text-black hover:text-gray-600 transition-colors">
+          <NuxtLink to="/history" class="text-base md:text-lg font-medium text-black hover:text-gray-600 transition-colors">
             About region
-          </button>
+          </NuxtLink>
         </div>
       </div>
         
