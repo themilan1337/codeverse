@@ -7,9 +7,9 @@ export default defineNuxtConfig({
   css: ['./app/assets/css/main.css'],
   modules: ['@nuxt/eslint', '@nuxt/fonts', '@nuxt/image', '@nuxtjs/seo', '@pinia/nuxt'],
   app: {
-    pageTransition: {
-      name: 'page',
-      mode: 'out-in'
+    head: {
+      viewport: 'width=device-width, initial-scale=1',
+      charset: 'utf-8',
     }
   },
   vite: {

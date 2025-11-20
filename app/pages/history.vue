@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen bg-stone-50 pb-24">
-    <UiTopNav />
+
     
     <!-- Hero Parallax-like -->
     <div class="relative h-[80vh] w-full overflow-hidden">

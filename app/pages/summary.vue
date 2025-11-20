@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-stone-50 pb-24">
-    <Menu ref="menuRef" />
-    <UiTopNav :menu-ref="menuRef" />
+
+
 
     <!-- Hero Section -->
     <div class="relative h-[50vh] w-full overflow-hidden">
@@ -174,9 +174,9 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import Menu from "~/components/Ui/Menu.vue";
 
-const menuRef = ref(null)
+
+
 
 // Facts Data
 const facts = [

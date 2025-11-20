@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen bg-white pb-24">
-    <UiTopNav />
+
     
     <main class="pt-32 px-6 md:px-12 max-w-[1600px] mx-auto">
       <!-- Hero Section -->

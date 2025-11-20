@@ -1,6 +1,8 @@
 <template>
   <div>
-    <PageTransition />
-    <NuxtPage />
+    <NuxtLayout>
+      <PageTransition />
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>

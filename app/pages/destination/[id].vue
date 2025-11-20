@@ -1,8 +1,8 @@
 <template>
   <div class="bg-stone-50 min-h-screen">
-    <UiMenu ref="menuRef" />
+
     <div class="w-full relative overflow-hidden pb-0">
-      <UiTopNav :menu-ref="menuRef" />
+
 
       <main v-if="destination">
         <!-- Hero Section -->
@@ -112,7 +112,7 @@ import { useRoute } from 'vue-router'
 import destinationsData from '~/data/destinations.json'
 
 const route = useRoute()
-const menuRef = ref(null)
+
 
 const destination = computed(() => {
   return destinationsData.find(d => d.id === route.params.id)

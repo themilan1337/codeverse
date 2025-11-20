@@ -1,9 +1,9 @@
 <template>
   <div class="bg-stone-50 min-h-screen">
-    <Menu ref="menuRef" />
+
 
     <div class="w-full relative overflow-hidden pb-0">
-      <UiTopNav :menu-ref="menuRef" />
+
 
       <main>
         <UiHero />
@@ -168,9 +168,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import destinationsData from '~/data/destinations.json'
-import Menu from "~/components/Ui/Menu.vue";
 
-const menuRef = ref(null)
+
+
 const tours = destinationsData.slice(0, 3).map(d => ({
   ...d,
   title: `${d.title}: ${d.subtitle}`

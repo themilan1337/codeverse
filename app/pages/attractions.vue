@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen bg-stone-50 pb-24">
-    <UiTopNav />
+
 
     <!-- Hero Section -->
     <div class="relative h-[70vh] w-full overflow-hidden">

@@ -52,7 +52,7 @@ onMounted(() => {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  z-index: 9999;
+  z-index: 100000;
   pointer-events: none;
 }
 

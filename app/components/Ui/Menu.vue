@@ -201,6 +201,14 @@ onUnmounted(() => {
   }
 })
 
+// Watch for route changes to close menu
+const route = useRoute()
+watch(() => route.fullPath, () => {
+  if (isMenuOpen.value) {
+    closeMenu()
+  }
+})
+
 // Expose toggleMenu so it can be called from parent components
 defineExpose({
   toggleMenu

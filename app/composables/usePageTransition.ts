@@ -35,6 +35,8 @@ export const usePageTransition = () => {
   }
 
   const animateTransition = (): Promise<void> => {
+    if (isTransitioning.value) return Promise.resolve()
+
     return new Promise((resolve) => {
       isTransitioning.value = true
       const blocks = document.querySelectorAll('.page-transition-block')
