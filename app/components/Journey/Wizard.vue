@@ -48,23 +48,49 @@
           </div>
 
           <div class="space-y-6">
-            <!-- Season Select -->
-            <div class="space-y-2">
+            <!-- Season Select (Custom) -->
+            <div class="space-y-2 relative" ref="seasonDropdownRef">
               <label class="block text-sm font-medium text-gray-700 ml-1">Season</label>
               <div class="relative">
-                <select v-model="formData.season"
-                  class="w-full appearance-none bg-white border-2 border-gray-200 text-text-main py-4 px-6 pr-12 rounded-2xl focus:outline-none focus:border-accent-red focus:ring-0 transition-colors cursor-pointer text-lg">
-                  <option value="" disabled>Select a season</option>
-                  <option value="spring">Spring (Blooming Tulips)</option>
-                  <option value="summer">Summer (Warm & Sunny)</option>
-                  <option value="autumn">Autumn (Golden Harvest)</option>
-                  <option value="winter">Winter (Cozy & Crisp)</option>
-                </select>
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-6 text-gray-500">
-                  <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                <button @click="isSeasonOpen = !isSeasonOpen"
+                  class="w-full bg-white border-2 border-gray-200 text-left py-4 px-6 rounded-2xl focus:outline-none focus:border-accent-red transition-colors flex justify-between items-center"
+                  :class="{ 'border-accent-red': isSeasonOpen }">
+                  <span :class="formData.season ? 'text-text-main' : 'text-gray-400'" class="text-lg">
+                    {{ selectedSeasonLabel || 'Select a season' }}
+                  </span>
+                  <svg class="w-5 h-5 text-gray-500 transition-transform duration-200"
+                    :class="{ 'rotate-180': isSeasonOpen }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                    fill="currentColor">
+                    <path fill-rule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clip-rule="evenodd" />
                   </svg>
-                </div>
+                </button>
+
+                <!-- Dropdown Menu -->
+                <Transition enter-active-class="transition duration-100 ease-out"
+                  enter-from-class="transform scale-95 opacity-0" enter-to-class="transform scale-100 opacity-100"
+                  leave-active-class="transition duration-75 ease-in" leave-from-class="transform scale-100 opacity-100"
+                  leave-to-class="transform scale-95 opacity-0">
+                  <div v-if="isSeasonOpen"
+                    class="absolute z-50 w-full mt-2 bg-white border-2 border-gray-100 rounded-2xl shadow-xl overflow-hidden">
+                    <div class="max-h-60 overflow-auto py-2">
+                      <button v-for="option in seasonOptions" :key="option.value" @click="selectSeason(option.value)"
+                        class="w-full text-left px-6 py-3 hover:bg-gray-50 transition-colors flex items-center justify-between group"
+                        :class="{ 'bg-red-50 text-accent-red': formData.season === option.value }">
+                        <span class="font-medium text-lg">{{ option.label }}</span>
+                        <span v-if="formData.season === option.value" class="text-accent-red">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                              clip-rule="evenodd" />
+                          </svg>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </Transition>
               </div>
             </div>
 
@@ -133,14 +159,14 @@
             <p class="text-gray-500">How do you prefer to explore?</p>
           </div>
 
-          <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <button v-for="style in travelStyleOptions" :key="style.id" @click="formData.travelStyle = style.id"
-              class="aspect-square p-6 rounded-2xl border-2 flex flex-col items-center justify-center gap-4 text-center transition-all duration-200 hover:scale-[1.02]"
+              class="p-6 rounded-2xl border-2 flex flex-col items-center justify-center gap-3 text-center transition-all duration-200"
               :class="formData.travelStyle === style.id
                 ? 'border-accent-red bg-red-50'
                 : 'border-gray-100 bg-white hover:border-gray-200'">
-              <span class="text-4xl">{{ style.icon }}</span>
-              <span class="font-bold text-lg"
+              <span class="text-3xl">{{ style.icon }}</span>
+              <span class="font-bold text-base"
                 :class="formData.travelStyle === style.id ? 'text-accent-red' : 'text-text-main'">{{ style.label
                 }}</span>
             </button>
@@ -174,16 +200,50 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, reactive } from 'vue'
+import { ref, computed, reactive, onMounted, onUnmounted } from 'vue'
 
 const currentStep = ref(1)
 const transitionName = ref('slide-next')
+const seasonDropdownRef = ref<HTMLElement | null>(null)
 
 const formData = reactive({
   season: '',
   preferences: [] as string[],
   budget: '',
   travelStyle: ''
+})
+
+const isSeasonOpen = ref(false)
+
+const seasonOptions = [
+  { value: 'spring', label: 'Spring (Blooming Tulips)' },
+  { value: 'summer', label: 'Summer (Warm & Sunny)' },
+  { value: 'autumn', label: 'Autumn (Golden Harvest)' },
+  { value: 'winter', label: 'Winter (Cozy & Crisp)' }
+]
+
+const selectedSeasonLabel = computed(() => {
+  const option = seasonOptions.find(opt => opt.value === formData.season)
+  return option ? option.label : ''
+})
+
+const selectSeason = (value: string) => {
+  formData.season = value
+  isSeasonOpen.value = false
+}
+
+const handleClickOutside = (event: MouseEvent) => {
+  if (seasonDropdownRef.value && !seasonDropdownRef.value.contains(event.target as Node)) {
+    isSeasonOpen.value = false
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleClickOutside)
 })
 
 const preferencesOptions = [
