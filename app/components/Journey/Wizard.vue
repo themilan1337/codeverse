@@ -181,40 +181,20 @@
           </div>
         </div>
 
-        <!-- Step 5: Loading & Streaming -->
-        <div v-else-if="currentStep === 5" key="step5" class="space-y-8">
-          <div v-if="!aiResponse" class="flex flex-col items-center justify-center py-20 space-y-8">
-            <div class="loader-container">
-              <svg viewBox="25 25 50 50" class="loader-svg">
-                <circle r="20" cy="50" cx="50" class="loader-circle"></circle>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-display font-bold animate-pulse text-text-main">
-              Crafting your journey...
-            </h3>
-            <p class="text-gray-500 text-center max-w-md">
-              Our AI is designing a personalized experience just for you
-            </p>
+        <!-- Step 5: Loading -->
+        <div v-else-if="currentStep === 5" key="step5"
+          class="flex flex-col items-center justify-center py-20 space-y-8">
+          <div class="loader-container">
+            <svg viewBox="25 25 50 50" class="loader-svg">
+              <circle r="20" cy="50" cx="50" class="loader-circle"></circle>
+            </svg>
           </div>
-
-          <!-- Streaming Content Preview -->
-          <div v-else class="space-y-6">
-            <div class="text-center mb-8 space-y-4">
-              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 mb-4">
-                <div class="loader-container-small">
-                  <svg viewBox="25 25 50 50" class="loader-svg-small">
-                    <circle r="20" cy="50" cx="50" class="loader-circle"></circle>
-                  </svg>
-                </div>
-              </div>
-              <h3 class="text-2xl font-display font-bold text-text-main">Creating Your Itinerary</h3>
-              <p class="text-gray-500">Personalizing every detail...</p>
-            </div>
-
-            <div class="ai-response-container bg-white rounded-3xl shadow-lg border-2 border-blue-200 overflow-hidden">
-              <div class="p-8 md:p-12 prose prose-lg max-w-none streaming-content" v-html="renderedContent"></div>
-            </div>
-          </div>
+          <h3 class="text-2xl font-display font-bold animate-pulse text-text-main">
+            Crafting your journey...
+          </h3>
+          <p class="text-gray-500 text-center max-w-md">
+            Our AI is designing a personalized experience just for you
+          </p>
         </div>
 
         <!-- Step 6: Results -->
@@ -491,12 +471,6 @@ const restartWizard = () => {
   animation: rotate4 2s linear infinite;
 }
 
-.loader-svg-small {
-  width: 2em;
-  transform-origin: center;
-  animation: rotate4 2s linear infinite;
-}
-
 .loader-circle {
   fill: none;
   stroke: #ff000a;
@@ -543,26 +517,6 @@ const restartWizard = () => {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-/* Streaming Content with Typing Cursor */
-.streaming-content::after {
-  content: '▊';
-  animation: blink 1s infinite;
-  color: #ff000a;
-  margin-left: 2px;
-}
-
-@keyframes blink {
-  0%,
-  50% {
-    opacity: 1;
-  }
-
-  51%,
-  100% {
-    opacity: 0;
   }
 }
 
