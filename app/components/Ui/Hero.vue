@@ -26,12 +26,12 @@
         </h1>
 
         <div class="flex flex-wrap items-center gap-4 md:gap-6">
-          <button class="px-6 py-3 md:px-8 md:py-4 bg-accent-red text-white rounded-full text-base md:text-lg font-medium hover:bg-accent-hover transition-colors duration-300 flex items-center gap-2 group">
+          <NuxtLink to="/journey" class="px-6 py-3 md:px-8 md:py-4 bg-accent-red text-white rounded-full text-base md:text-lg font-medium hover:bg-accent-hover transition-colors duration-300 flex items-center gap-2 group">
             Start the journey
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 group-hover:translate-x-1 transition-transform">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
-          </button>
+          </NuxtLink>
 
           <button class="text-base md:text-lg font-medium text-black hover:text-gray-600 transition-colors">
             About region

@@ -76,9 +76,9 @@ onUnmounted(() => {
       </div>
 
       <!-- CTA Button -->
-      <button class="bg-accent-red hover:bg-accent-hover text-white px-4 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-colors cursor-pointer">
+      <NuxtLink to="/journey" class="bg-accent-red hover:bg-accent-hover text-white px-4 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-colors cursor-pointer">
         Start the journey
-      </button>
+      </NuxtLink>
 
       <!-- Menu Button -->
       <button 
