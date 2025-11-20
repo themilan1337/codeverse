@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/google-sans');
+
 @import "tailwindcss";
 
 @theme {
@@ -7,7 +9,7 @@
     --color-bg-warm: #F9F9F7;
 
     --font-sans: 'Inter', system-ui, sans-serif;
-    --font-display: 'Poppins', 'Space Grotesk', system-ui, sans-serif;
+    --font-display: 'Product Sans', system-ui, sans-serif;
 
     --radius-2xl: 1.5rem;
     --radius-3xl: 2rem;
@@ -15,9 +17,9 @@
 
 @layer base {
     body {
-        @apply font-sans text-text-main bg-bg-warm antialiased;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-        background-blend-mode: overlay;
+        @apply font-sans text-text-main antialiased;
+        position: relative;
+        background-color: #F9F9F7;
     }
 
     h1,
