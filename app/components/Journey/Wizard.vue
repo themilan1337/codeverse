@@ -336,7 +336,6 @@ const finish = () => {
 .loader-circle {
   fill: none;
   stroke: #ff000a;
-  /* Using the requested color directly */
   stroke-width: 2;
   stroke-dasharray: 1, 200;
   stroke-dashoffset: 0;
