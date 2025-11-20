@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
     const body = await readBody(event)
     const config = useRuntimeConfig()
-    const apiKey = config.OPENAI_API_KEY
+    const apiKey = config.openaiApiKey
 
     if (!apiKey) {
         // Fallback for demo without key

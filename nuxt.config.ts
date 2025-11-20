@@ -5,6 +5,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['./app/assets/css/main.css'],
   modules: ['@nuxt/eslint', '@nuxt/fonts', '@nuxt/image', '@pinia/nuxt'],
+  runtimeConfig: {
+    openaiApiKey: process.env.OPENAI_API_KEY,
+  },
   vite: {
     plugins: [
       tailwindcss(),
