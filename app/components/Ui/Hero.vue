@@ -18,9 +18,19 @@
 
       <!-- Right: Description -->
       <div class="lg:col-span-5 lg:pt-4 flex flex-col gap-6">
-        <p class="text-lg text-gray-600 leading-relaxed max-w-md ml-auto">
-          Experience the warmth of the South. From the spiritual domes of Turkestan to the vibrant streets of Shymkent. The heart of the Silk Road awaits you.
-        </p>
+        <div class="max-w-md ml-auto flex flex-col gap-8 items-start">
+          <p class="text-lg text-gray-600 leading-relaxed">
+            Experience the warmth of the South. From the spiritual domes of Turkestan to the vibrant streets of Shymkent. The heart of the Silk Road awaits you.
+          </p>
+          
+          <NuxtLink 
+            to="/journey" 
+            class="bg-accent-blue hover:bg-accent-hover text-white px-8 py-4 rounded-full text-lg font-medium transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center gap-3 group"
+          >
+            Start the Journey
+            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </NuxtLink>
+        </div>
       </div>
       
     </div>
