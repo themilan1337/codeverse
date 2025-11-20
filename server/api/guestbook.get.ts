@@ -1,18 +1,19 @@
 import { defineEventHandler } from 'h3'
-import fs from 'node:fs'
-import path from 'node:path'
-
-const DATA_FILE = path.resolve(process.cwd(), 'server/data/guestbook.json')
+import { GuestbookEntry } from '../models/GuestbookEntry'
 
 export default defineEventHandler(async (event) => {
     try {
-        if (!fs.existsSync(DATA_FILE)) {
-            return []
-        }
-        const data = fs.readFileSync(DATA_FILE, 'utf-8')
-        return JSON.parse(data)
+        const entries = await GuestbookEntry.find().sort({ createdAt: -1 }).limit(100)
+        return entries.map(entry => ({
+            id: entry._id,
+            message: entry.message,
+            signature: entry.signature,
+            author: entry.author,
+            createdAt: entry.createdAt,
+            color: entry.color
+        }))
     } catch (error) {
-        console.error('Error reading guestbook data:', error)
+        console.error('Error fetching guestbook entries:', error)
         return []
     }
 })

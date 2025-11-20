@@ -1,8 +1,7 @@
-import { defineEventHandler, readBody } from 'h3'
+import { defineEventHandler, readBody, createError } from 'h3'
+import { GuestbookEntry } from '../models/GuestbookEntry'
 import fs from 'node:fs'
 import path from 'node:path'
-
-const DATA_FILE = path.resolve(process.cwd(), 'server/data/guestbook.json')
 
 export default defineEventHandler(async (event) => {
     try {
@@ -15,36 +14,47 @@ export default defineEventHandler(async (event) => {
             })
         }
 
-        const newEntry = {
-            id: Date.now().toString(),
-            message: body.message || '',
-            signature: body.signature || '', // Base64 string
-            author: body.author || 'Anonymous',
-            createdAt: new Date().toISOString(),
-            color: body.color || '#000000'
+        let signaturePath = ''
+
+        if (body.signature && body.signature.startsWith('data:image')) {
+            // Save image to filesystem
+            const base64Data = body.signature.replace(/^data:image\/\w+;base64,/, '')
+            const buffer = Buffer.from(base64Data, 'base64')
+
+            const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.png`
+            const uploadDir = path.join(process.cwd(), 'public/assets/images/wishes')
+
+            // Ensure directory exists
+            if (!fs.existsSync(uploadDir)) {
+                fs.mkdirSync(uploadDir, { recursive: true })
+            }
+
+            const filePath = path.join(uploadDir, fileName)
+            fs.writeFileSync(filePath, buffer)
+
+            signaturePath = `/assets/images/wishes/${fileName}`
+        } else {
+            signaturePath = body.signature || ''
         }
 
-        let entries = []
-        if (fs.existsSync(DATA_FILE)) {
-            const fileContent = fs.readFileSync(DATA_FILE, 'utf-8')
-            try {
-                entries = JSON.parse(fileContent)
-            } catch (e) {
-                entries = []
+        const newEntry = await GuestbookEntry.create({
+            message: body.message || '',
+            signature: signaturePath,
+            author: body.author || 'Anonymous',
+            color: body.color || '#000000'
+        })
+
+        return {
+            success: true,
+            entry: {
+                id: newEntry._id,
+                message: newEntry.message,
+                signature: newEntry.signature,
+                author: newEntry.author,
+                createdAt: newEntry.createdAt,
+                color: newEntry.color
             }
         }
-
-        // Add new entry to the beginning
-        entries.unshift(newEntry)
-
-        // Limit to last 100 entries to prevent file from growing too large for this demo
-        if (entries.length > 100) {
-            entries = entries.slice(0, 100)
-        }
-
-        fs.writeFileSync(DATA_FILE, JSON.stringify(entries, null, 2))
-
-        return { success: true, entry: newEntry }
     } catch (error) {
         console.error('Error saving guestbook entry:', error)
         throw createError({

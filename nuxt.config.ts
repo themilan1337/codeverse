@@ -3,7 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   ssr: false,
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   css: ['./app/assets/css/main.css'],
   modules: ['@nuxt/eslint', '@nuxt/fonts', '@nuxt/image', '@nuxtjs/seo', '@pinia/nuxt'],
   app: {
@@ -23,5 +23,8 @@ export default defineNuxtConfig({
       'upload.wikimedia.org',
       'static.tildacdn.pro',
     ],
+  },
+  runtimeConfig: {
+    mongodbUri: process.env.MONGODB_URI,
   },
 });
