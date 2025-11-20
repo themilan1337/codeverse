@@ -12,7 +12,7 @@
         <section class="py-20 md:py-32 px-6 md:px-12 max-w-[1400px] mx-auto">
           <div class="flex flex-col md:flex-row gap-12 md:gap-24 items-start">
             <div class="md:w-1/3">
-              <span class="text-accent-red font-mono text-sm md:text-base tracking-wider uppercase mb-4 block">Welcome to the South</span>
+              <!-- <span class="text-accent-red font-mono text-sm md:text-base tracking-wider uppercase mb-4 block">Welcome to the South</span> -->
               <h2 class="text-4xl md:text-6xl font-bold leading-[0.95] tracking-tight text-text-main">
                 Where History <br />
                 Meets <span class="text-gray-400 italic">Hospitality</span>
@@ -44,7 +44,17 @@
         <!-- Features Bento Grid -->
         <section class="py-20 px-6 md:px-12 max-w-[1400px] mx-auto">
           <div class="mb-16 text-center">
-            <h2 class="text-3xl md:text-5xl font-bold mb-4">Why Visit Shymkent?</h2>
+            <h2 class="text-3xl md:text-5xl font-bold mb-4">Why Visit
+              <NuxtImg 
+            src="/assets/images/shymkent_logo.png" 
+            alt="Shymkent" 
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+            :placeholder="[50, 25, 75, 5]"
+            class="inline-block h-[0.8em] w-auto -mt-2 mx-2 align-middle" 
+          />
+              Shymkent?</h2>
             <p class="text-gray-600 max-w-2xl mx-auto text-lg">Discover the unique blend of ancient traditions and modern life that makes this region the heart of Kazakhstan.</p>
           </div>
 
@@ -100,7 +110,17 @@
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
               <div>
                 <span class="text-accent-red font-mono text-sm tracking-wider uppercase mb-2 block">Discover</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-text-main">Popular Destinations</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-text-main">Popular
+                  <NuxtImg 
+            src="/assets/images/shymkent_logo.png" 
+            alt="Shymkent" 
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+            :placeholder="[50, 25, 75, 5]"
+            class="inline-block h-[0.8em] w-auto -mt-2 mx-2 align-middle" 
+          />
+                  Destinations</h2>
               </div>
               <NuxtLink to="/attractions" class="group flex items-center gap-2 text-lg font-medium hover:text-accent-red transition-colors">
                 View all places
@@ -133,11 +153,8 @@
             <p class="text-xl md:text-2xl text-gray-300 mb-12 font-light">
               Let AI help you plan the perfect trip to Shymkent and Turkestan based on your preferences.
             </p>
-            <NuxtLink to="/journey" class="inline-flex items-center gap-3 px-10 py-5 bg-white text-black rounded-full text-xl font-bold hover:bg-gray-200 transition-all hover:scale-105">
+            <NuxtLink to="/journey" class="inline-flex items-center gap-3 px-10 py-5 bg-accent-red text-white rounded-full transition text-xl font-bold hover:bg-accent-hover transition-all">
               Plan my trip
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-              </svg>
             </NuxtLink>
           </div>
         </section>
