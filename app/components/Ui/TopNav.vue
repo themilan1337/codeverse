@@ -1,14 +1,51 @@
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const localTime = ref('')
+const shymkentTime = ref('')
+let timer: ReturnType<typeof setInterval>
+
+function updateTime() {
+  const now = new Date()
+  
+  // Local Time
+  localTime.value = now.toLocaleTimeString('en-US', { 
+    hour: '2-digit', 
+    minute: '2-digit', 
+    second: '2-digit' 
+  })
+
+  // Shymkent Time (UTC+5)
+  shymkentTime.value = now.toLocaleTimeString('en-US', { 
+    timeZone: 'Asia/Almaty',
+    hour: '2-digit', 
+    minute: '2-digit', 
+    second: '2-digit' 
+  })
+}
+
+onMounted(() => {
+  updateTime()
+  timer = setInterval(updateTime, 1000)
+})
+
+onUnmounted(() => {
+  clearInterval(timer)
+})
+</script>
+
 <template>
   <nav class="w-full py-6 px-6 md:px-12 flex items-center justify-between bg-transparent relative z-10">
     <!-- Logo -->
     <div class="flex items-center gap-2">
-      <span class="text-xl font-medium tracking-tight text-text-main">Kazakhstan</span>
-      <span class="text-red-500 text-xl">❤️</span>
+      <NuxtLink to="/">
+        <img class="w-16 h-auto" src="https://upload.wikimedia.org/wikipedia/commons/6/66/Shymkent_logo.svg" alt=""></img>
+      </NuxtLink>
     </div>
 
     <!-- Center Info (Time) - Optional/Hidden on mobile -->
-    <div class="hidden md:block text-sm text-gray-500 font-mono">
-      5:12 PM // 6:12 PM
+    <div class="hidden md:block text-sm text-gray-500 font-mono min-w-[280px] text-center">
+      LOCAL {{ localTime }} // CIT {{ shymkentTime }}
     </div>
 
     <!-- Right Actions -->

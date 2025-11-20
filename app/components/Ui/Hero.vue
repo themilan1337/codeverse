@@ -25,10 +25,9 @@
           
           <NuxtLink 
             to="/journey" 
-            class="bg-accent-blue hover:bg-accent-hover text-white px-8 py-4 rounded-full text-lg font-medium transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 flex items-center gap-3 group"
+            class="bg-accent-blue hover:bg-accent-hover text-white px-8 py-4 rounded-full text-lg font-medium transition-all flex items-center gap-3 group hover:bg-blue-500"
           >
             Start the Journey
-            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </NuxtLink>
         </div>
       </div>
