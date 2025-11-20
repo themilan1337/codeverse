@@ -29,6 +29,8 @@
            </div>
         </div>
       </div>
+      
+      <AiAssistantChat />
     </main>
 
     <UiLanguageSwitcher />

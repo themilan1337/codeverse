@@ -38,8 +38,8 @@ onMounted(() => {
   map.value = new mapboxgl.Map({
     container: mapContainer.value,
     style: 'mapbox://styles/mapbox/light-v11',
-    center: props.center || [77.0, 43.0], // Default to Almaty region
-    zoom: props.zoom || 5
+    center: props.center || [69.5901, 42.3417], // Default to Shymkent
+    zoom: props.zoom || 10
   })
 
   map.value.addControl(new mapboxgl.NavigationControl(), 'bottom-right')

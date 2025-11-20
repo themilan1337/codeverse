@@ -1,32 +1,32 @@
 [
     {
         "id": 1,
-        "title": "Three lakes tour (Kolsay, Kaindy and Big Almaty lake)",
-        "image": "/assets/images/card1.jpg",
-        "description": "Visit the pearls of the Northern Tien Shan.",
+        "title": "Turkestan: The Spiritual Capital & Yasawi Mausoleum",
+        "image": "/assets/images/turkestan.jpg",
+        "description": "Visit the UNESCO heritage site and the modern Karavansaray.",
         "coords": [
-            77.0,
-            43.0
+            68.27,
+            43.30
         ]
     },
     {
         "id": 2,
-        "title": "Visit all attractions of the capital of Kazakhstan",
-        "image": "/assets/images/card2.jpg",
-        "description": "Modern architecture and nomadic heritage.",
+        "title": "Shymkent City Vibes: Citadel & Old Town",
+        "image": "/assets/images/shymkent_city.jpg",
+        "description": "Explore the ancient citadel and the best food in the south.",
         "coords": [
-            71.4,
-            51.1
+            69.59,
+            42.34
         ]
     },
     {
         "id": 3,
-        "title": "Camel rides on the steppe and overnights in yurts",
-        "image": "/assets/images/card3.jpg",
-        "description": "Authentic experience in the heart of the steppe.",
+        "title": "Ancient Otrar & Arystan Bab Mausoleum",
+        "image": "/assets/images/otrar.jpg",
+        "description": "Walk through the ruins of the ancient philosopher's city.",
         "coords": [
-            69.0,
-            42.0
+            68.30,
+            42.85
         ]
     }
 ]
