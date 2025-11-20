@@ -23,15 +23,13 @@
           <div class="menu-content-main">
             <div class="menu-col">
               <div class="menu-link hover:underline"><NuxtLink to="/" @click="closeMenu">Home</NuxtLink></div>
-              <div class="menu-link hover:underline"><NuxtLink to="/about" @click="closeMenu">About</NuxtLink></div>
-              <div class="menu-link hover:underline"><NuxtLink to="/services" @click="closeMenu">Services</NuxtLink></div>
-              <div class="menu-link hover:underline"><NuxtLink to="/contact" @click="closeMenu">Contact</NuxtLink></div>
+              <div class="menu-link hover:underline"><NuxtLink to="/history" @click="closeMenu">History</NuxtLink></div>
+              <div class="menu-link hover:underline"><NuxtLink to="/visa" @click="closeMenu">Visa & Entry</NuxtLink></div>
+              <div class="menu-link hover:underline"><NuxtLink to="/attractions" @click="closeMenu">Attractions</NuxtLink></div>
             </div>
 
             <div class="menu-col">
-              <div class="menu-tag hover:underline"><a href="#">Transportation</a></div>
-              <div class="menu-tag hover:underline"><a href="#">Technology</a></div>
-              <div class="menu-tag hover:underline"><a href="#">Innovation</a></div>
+              <div class="menu-tag hover:underline"><NuxtLink to="/journey" @click="closeMenu">Start Journey</NuxtLink></div>
             </div>
           </div>
           <div class="menu-footer">

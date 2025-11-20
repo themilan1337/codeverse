@@ -12,7 +12,7 @@
     {
         "id": 2,
         "title": "Shymkent City Vibes: Citadel & Old Town",
-        "image": "/assets/images/shymkent_city.jpg",
+        "image": "/assets/images/shymkent.jpeg",
         "description": "Explore the ancient citadel and the best food in the south.",
         "coords": [
             69.59,
@@ -22,7 +22,7 @@
     {
         "id": 3,
         "title": "Ancient Otrar & Arystan Bab Mausoleum",
-        "image": "/assets/images/otrar.jpg",
+        "image": "/assets/images/otrar.jpeg",
         "description": "Walk through the ruins of the ancient philosopher's city.",
         "coords": [
             68.30,

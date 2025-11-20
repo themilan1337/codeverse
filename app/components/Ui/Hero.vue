@@ -40,12 +40,10 @@
       </div>
         
 
-      <!-- Right: Image Card -->
       <div class="lg:col-span-5 h-full">
         <div class="relative w-full h-full min-h-[300px] md:min-h-[400px] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden group isolation-auto">
-          <!-- Background Image -->
           <NuxtImg 
-            src="https://informburo.kz/storage/photos/72/main/iGSh3bFfQAuNU9dytwSSsnRRabvtXCLjCi7D2eGa.jpg" 
+            src="/assets/images/cave.jpg" 
             alt="Shymkent & Turkestan" 
             loading="eager"
             decoding="async"
@@ -54,10 +52,8 @@
             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
           
-          <!-- Gradient Overlay (Bottom-up shadow) -->
           <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
 
-          <!-- Content -->
           <div class="relative z-10 h-full flex flex-col justify-end p-6 md:p-10 gap-6">
             <h2 class="text-2xl md:text-3xl text-white leading-tight font-bold drop-shadow-md">
               Experience the warmth of the South. From the spiritual domes of Turkestan to the vibrant streets of Shymkent.
