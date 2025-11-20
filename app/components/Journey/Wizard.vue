@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full max-w-3xl mx-auto">
+  <div class="w-full max-w-5xl mx-auto">
     <!-- Progress Bar (Optional, but good for UX) -->
     <div class="w-full h-1 bg-gray-200 rounded-full mb-8 overflow-hidden" v-if="currentStep < 5">
       <div class="h-full bg-accent-red transition-all duration-500 ease-out"
@@ -181,17 +181,71 @@
           </div>
         </div>
 
-        <!-- Step 5: Loading -->
-        <div v-else-if="currentStep === 5" key="step5"
-          class="flex flex-col items-center justify-center py-20 space-y-8">
-          <div class="loader-container">
-            <svg viewBox="25 25 50 50" class="loader-svg">
-              <circle r="20" cy="50" cx="50" class="loader-circle"></circle>
-            </svg>
+        <!-- Step 5: Loading & Streaming -->
+        <div v-else-if="currentStep === 5" key="step5" class="space-y-8">
+          <div v-if="!aiResponse" class="flex flex-col items-center justify-center py-20 space-y-8">
+            <div class="loader-container">
+              <svg viewBox="25 25 50 50" class="loader-svg">
+                <circle r="20" cy="50" cx="50" class="loader-circle"></circle>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-display font-bold animate-pulse text-text-main">
+              Crafting your journey...
+            </h3>
+            <p class="text-gray-500 text-center max-w-md">
+              Our AI is designing a personalized experience just for you
+            </p>
           </div>
-          <h3 class="text-2xl font-display font-bold animate-pulse text-text-main">
-            Crafting your journey...
-          </h3>
+
+          <!-- Streaming Content Preview -->
+          <div v-else class="space-y-6">
+            <div class="text-center mb-8 space-y-4">
+              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 mb-4">
+                <div class="loader-container-small">
+                  <svg viewBox="25 25 50 50" class="loader-svg-small">
+                    <circle r="20" cy="50" cx="50" class="loader-circle"></circle>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="text-2xl font-display font-bold text-text-main">Creating Your Itinerary</h3>
+              <p class="text-gray-500">Personalizing every detail...</p>
+            </div>
+
+            <div class="ai-response-container bg-white rounded-3xl shadow-lg border-2 border-blue-200 overflow-hidden">
+              <div class="p-8 md:p-12 prose prose-lg max-w-none streaming-content" v-html="renderedContent"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 6: Results -->
+        <div v-else-if="currentStep === 6" key="step6" class="space-y-8">
+          <!-- Header -->
+          <div class="text-center mb-8 space-y-4">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-4">
+              <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <h3 class="text-3xl font-display font-bold text-text-main">Your Journey Awaits</h3>
+            <p class="text-gray-500">Here's your personalized itinerary for Shymkent & Turkestan</p>
+          </div>
+
+          <!-- AI Response Content -->
+          <div class="ai-response-container bg-white rounded-3xl shadow-lg border-2 border-gray-100 overflow-hidden">
+            <div class="p-8 md:p-12 prose prose-lg max-w-none" v-html="renderedContent"></div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+            <button @click="restartWizard"
+              class="px-8 py-4 bg-accent-red text-white rounded-full font-medium hover:bg-accent-hover transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+              Create Another Journey
+            </button>
+            <button @click="window.print()"
+              class="px-8 py-4 bg-white text-text-main border-2 border-gray-200 rounded-full font-medium hover:border-accent-red hover:text-accent-red transition-all duration-300">
+              Print Itinerary
+            </button>
+          </div>
         </div>
 
       </Transition>
@@ -201,10 +255,13 @@
 
 <script setup lang="ts">
 import { ref, computed, reactive, onMounted, onUnmounted } from 'vue'
+import { marked } from 'marked'
 
 const currentStep = ref(1)
 const transitionName = ref('slide-next')
 const seasonDropdownRef = ref<HTMLElement | null>(null)
+const aiResponse = ref('')
+const isStreaming = ref(false)
 
 const formData = reactive({
   season: '',
@@ -214,6 +271,12 @@ const formData = reactive({
 })
 
 const isSeasonOpen = ref(false)
+
+// Configure marked for better rendering
+marked.setOptions({
+  breaks: true,
+  gfm: true
+})
 
 const seasonOptions = [
   { value: 'spring', label: 'Spring (Blooming Tulips)' },
@@ -290,10 +353,94 @@ const prevStep = () => {
   currentStep.value--
 }
 
-const finish = () => {
+const finish = async () => {
   transitionName.value = 'slide-next'
   currentStep.value = 5
-  // No further action as per requirements
+  isStreaming.value = true
+  aiResponse.value = ''
+
+  try {
+    const response = await fetch('/api/generate-itinerary', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to generate itinerary')
+    }
+
+    const reader = response.body?.getReader()
+    const decoder = new TextDecoder()
+
+    if (!reader) {
+      throw new Error('No response body')
+    }
+
+    let buffer = ''
+
+    while (true) {
+      const { done, value } = await reader.read()
+
+      if (done) {
+        break
+      }
+
+      buffer += decoder.decode(value, { stream: true })
+      const lines = buffer.split('\n')
+      buffer = lines.pop() || ''
+
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          const data = line.slice(6)
+
+          if (data === '[DONE]') {
+            isStreaming.value = false
+            // Smooth transition to results with fade
+            setTimeout(() => {
+              transitionName.value = 'fade'
+              currentStep.value = 6
+            }, 500)
+            break
+          }
+
+          try {
+            const parsed = JSON.parse(data)
+            if (parsed.content) {
+              aiResponse.value += parsed.content
+            }
+          } catch (e) {
+            // Skip invalid JSON
+          }
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Error generating itinerary:', error)
+    aiResponse.value = '## Error\n\nWe encountered an issue generating your itinerary. Please try again.'
+    isStreaming.value = false
+    setTimeout(() => {
+      transitionName.value = 'fade'
+      currentStep.value = 6
+    }, 500)
+  }
+}
+
+const renderedContent = computed(() => {
+  if (!aiResponse.value) return ''
+  return marked(aiResponse.value)
+})
+
+const restartWizard = () => {
+  currentStep.value = 1
+  transitionName.value = 'fade'
+  aiResponse.value = ''
+  formData.season = ''
+  formData.preferences = []
+  formData.budget = ''
+  formData.travelStyle = ''
 }
 </script>
 
@@ -326,9 +473,26 @@ const finish = () => {
   transform: translateX(20px);
 }
 
+/* Fade Transition */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.6s ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 /* Loader Animation */
 .loader-svg {
   width: 3.25em;
+  transform-origin: center;
+  animation: rotate4 2s linear infinite;
+}
+
+.loader-svg-small {
+  width: 2em;
   transform-origin: center;
   animation: rotate4 2s linear infinite;
 }
@@ -362,6 +526,220 @@ const finish = () => {
 
   100% {
     stroke-dashoffset: -125px;
+  }
+}
+
+/* AI Response Styling */
+.ai-response-container {
+  animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Streaming Content with Typing Cursor */
+.streaming-content::after {
+  content: '▊';
+  animation: blink 1s infinite;
+  color: #ff000a;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Markdown Prose Styling */
+.prose {
+  color: #0B1724;
+}
+
+.prose :deep(h1) {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #0B1724;
+  line-height: 1.1;
+}
+
+.prose :deep(h2) {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: #ff000a;
+  line-height: 1.2;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #fee;
+}
+
+.prose :deep(h3) {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: #0B1724;
+  line-height: 1.3;
+}
+
+.prose :deep(h4) {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #0B1724;
+}
+
+.prose :deep(p) {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  line-height: 1.75;
+  color: #374151;
+}
+
+.prose :deep(strong) {
+  font-weight: 600;
+  color: #0B1724;
+}
+
+.prose :deep(ul),
+.prose :deep(ol) {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.prose :deep(li) {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.75;
+  color: #374151;
+}
+
+.prose :deep(ul>li) {
+  list-style-type: disc;
+}
+
+.prose :deep(ol>li) {
+  list-style-type: decimal;
+}
+
+.prose :deep(li>ul),
+.prose :deep(li>ol) {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose :deep(blockquote) {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+  border-left: 4px solid #ff000a;
+  font-style: italic;
+  color: #6b7280;
+  background: #fef2f2;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.prose :deep(code) {
+  background: #f3f4f6;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-family: 'Monaco', 'Courier New', monospace;
+  color: #ff000a;
+}
+
+.prose :deep(pre) {
+  background: #1f2937;
+  color: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.prose :deep(pre code) {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+.prose :deep(a) {
+  color: #ff000a;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.prose :deep(a:hover) {
+  color: #ed4321;
+}
+
+.prose :deep(hr) {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: 0;
+  border-top: 2px solid #e5e7eb;
+}
+
+.prose :deep(table) {
+  width: 100%;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-collapse: collapse;
+}
+
+.prose :deep(th) {
+  background: #fef2f2;
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #ff000a;
+}
+
+.prose :deep(td) {
+  padding: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.prose :deep(img) {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Print Styles */
+@media print {
+  .ai-response-container {
+    box-shadow: none;
+    border: 1px solid #e5e7eb;
+  }
+
+  button {
+    display: none;
   }
 }
 </style>
