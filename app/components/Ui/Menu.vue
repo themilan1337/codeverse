@@ -26,6 +26,8 @@
               <div class="menu-link hover:underline"><NuxtLink to="/history" @click="closeMenu">History</NuxtLink></div>
               <div class="menu-link hover:underline"><NuxtLink to="/visa" @click="closeMenu">Visa & Entry</NuxtLink></div>
               <div class="menu-link hover:underline"><NuxtLink to="/attractions" @click="closeMenu">Attractions</NuxtLink></div>
+              <div class="menu-link hover:underline"><NuxtLink to="/team" @click="closeMenu">Team</NuxtLink></div>
+              <div class="menu-link hover:underline"><NuxtLink to="/contact" @click="closeMenu">Contact</NuxtLink></div>
             </div>
 
             <div class="menu-col">

@@ -20,18 +20,6 @@
             />
           </div>
         </div>
-
-        <!-- Map Section (Demo) -->
-        <div class="px-6 md:px-12 py-12">
-          <div class="w-full h-[500px] relative">
-             <MapSimpleMap />
-
-             <!-- Safety Badge Overlay -->
-             <div class="absolute top-6 left-6 z-10">
-               <SafetySafetyBadge :score="store.safetyScore" />
-             </div>
-          </div>
-        </div>
       </main>
 
       <UiLanguageSwitcher />
@@ -43,9 +31,7 @@
 import { ref } from 'vue'
 import toursData from '../data/tours.json'
 import Menu from "~/components/Ui/Menu.vue";
-import { useMainStore } from '../store'
 
 const menuRef = ref(null)
 const tours = toursData
-const store = useMainStore()
 </script>

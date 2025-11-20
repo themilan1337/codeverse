@@ -73,6 +73,8 @@ onUnmounted(() => {
         <NuxtLink to="/visa" class="hover:text-accent-red transition-colors">Visa and entry</NuxtLink>
         <NuxtLink to="/history" class="hover:text-accent-red transition-colors">History</NuxtLink>
         <NuxtLink to="/attractions" class="hover:text-accent-red transition-colors">Attractions</NuxtLink>
+        <NuxtLink to="/team" class="hover:text-accent-red transition-colors">Team</NuxtLink>
+        <NuxtLink to="/contact" class="hover:text-accent-red transition-colors">Contact</NuxtLink>
       </div>
 
       <!-- CTA Button -->

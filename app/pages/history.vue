@@ -5,7 +5,7 @@
     <!-- Hero Parallax-like -->
     <div class="relative h-[80vh] w-full overflow-hidden">
       <NuxtImg
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Mausoleum_of_Khoja_Ahmed_Yasawi.jpg/1200px-Mausoleum_of_Khoja_Ahmed_Yasawi.jpg"
+        src="/assets/images/history.jpg"
         alt="History of Shymkent"
         class="absolute inset-0 w-full h-full object-cover"
         loading="eager"
@@ -24,9 +24,9 @@
     <main class="max-w-[1200px] mx-auto px-6 md:px-12 -mt-20 relative z-10">
       
       <!-- Intro Card -->
-      <div class="bg-white p-8 md:p-16 rounded-[2.5rem] shadow-xl mb-24">
+      <div class="bg-[#fafafa] p-8 md:p-16 rounded-[2.5rem] mb-24 text-center">
         <h2 class="text-3xl md:text-5xl font-bold mb-8 text-text-main">Ancient Origins</h2>
-        <div class="prose prose-lg text-gray-600 max-w-none">
+        <div class="prose prose-lg text-gray-600 max-w-none mx-auto">
           <p>
             Shymkent is one of the oldest cities in Kazakhstan, with a history dating back to the 12th century. 
             Originally known as a caravanserai on the Great Silk Road to protect the trade route city of Sayram, 
@@ -39,9 +39,7 @@
         </div>
       </div>
 
-      <!-- Timeline Section -->
       <div class="space-y-24">
-        <!-- Era 1 -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div class="order-2 md:order-1">
             <NuxtImg 
