@@ -43,8 +43,8 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div class="order-2 md:order-1">
             <NuxtImg 
-              src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Turkestan_city_gates.jpg"
-              class="rounded-[2rem] w-full h-[400px] object-cover shadow-lg"
+              src="/assets/images/turk.jpg"
+              class="rounded-[2rem] w-full h-[400px] object-cover"
               alt="Silk Road Era"
             />
           </div>
@@ -70,8 +70,8 @@
           </div>
           <div>
             <NuxtImg 
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Shymkent_plaza.jpg/1200px-Shymkent_plaza.jpg"
-              class="rounded-[2rem] w-full h-[400px] object-cover shadow-lg"
+              src="/assets/images/plaza.jpg"
+              class="rounded-[2rem] w-full h-[400px] object-cover"
               alt="Industrial Era"
             />
           </div>

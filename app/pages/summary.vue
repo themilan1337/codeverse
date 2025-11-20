@@ -109,11 +109,15 @@
           </div>
 
           <!-- Quick Fact -->
-          <div class="bg-[#F5F5F0] rounded-[2.5rem] p-8 flex-1 flex flex-col justify-center text-center">
-            <span class="text-accent-red font-mono text-sm uppercase tracking-wider mb-4 block">Did you know?</span>
-            <p class="text-lg text-gray-700 font-medium">
-              Shymkent was founded in the 12th century as a caravanserai to protect the Silk Road town of Sayram.
-            </p>
+          <div class="bg-[#F5F5F0] rounded-[2.5rem] p-8 flex-1 flex flex-col justify-center text-center relative overflow-hidden">
+            <span class="text-accent-red font-mono text-sm uppercase tracking-wider mb-4 block relative z-10">Did you know?</span>
+            <div class="relative z-10 min-h-[6rem] flex items-center justify-center">
+              <Transition name="fade" mode="out-in">
+                <p :key="currentFactIndex" class="text-lg text-gray-700 font-medium">
+                  {{ currentFact }}
+                </p>
+              </Transition>
+            </div>
           </div>
         </div>
 
@@ -169,10 +173,59 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import Menu from "~/components/Ui/Menu.vue";
 
 const menuRef = ref(null)
+
+// Facts Data
+const facts = [
+  "Shymkent is one of the oldest cities in Kazakhstan, with a history spanning over 2,200 years.",
+  "The name 'Shymkent' translates to 'Turf City' or 'City of Grass' in Turkic languages.",
+  "Turkestan was known as Yasi in medieval times and was an important trade center on the Silk Road.",
+  "The Mausoleum of Khoja Ahmed Yasawi in Turkestan is a UNESCO World Heritage site.",
+  "The Mausoleum was commissioned by Tamerlane (Timur) in the late 14th century but remains unfinished.",
+  "Shymkent was declared the Cultural Capital of the CIS in 2020.",
+  "The region is famous for its tulips; the Greig and Kaufmann tulips, ancestors of Dutch tulips, originate here.",
+  "Turkestan is considered the spiritual capital of the Turkic world.",
+  "The Akmeshit Cave near Shymkent has a unique microclimate and trees growing inside it.",
+  "Shymkent has the highest number of sunny days in Kazakhstan, averaging over 300 per year.",
+  "The ancient settlement of Sayram, now part of Shymkent, was the birthplace of Khoja Ahmed Yasawi.",
+  "Otrar, a ghost town near Turkestan, was the birthplace of the philosopher Al-Farabi.",
+  "Shymkent is famous for its affordable and delicious food, especially shashlik and samsa.",
+  "The Domalak Ana Mausoleum is a popular pilgrimage site dedicated to a wise and saintly woman.",
+  "The Aksu-Zhabagly Nature Reserve is the oldest nature reserve in Central Asia, founded in 1926.",
+  "Shymkent's Dendropark is one of the largest arboretums in Central Asia, covering over 120 hectares.",
+  "The Turkestan region produces a significant portion of Kazakhstan's cotton.",
+  "The Arystan Bab Mausoleum is dedicated to the mentor of Khoja Ahmed Yasawi.",
+  "Shymkent was a major stop on the Great Silk Road connecting China to Europe.",
+  "The region is home to the Karatau Mountains, which are rich in ancient petroglyphs.",
+  "Shymkent's population exceeded one million in 2018, making it a city of republican significance.",
+  "The 'Taiqazan' in the Yasawi Mausoleum is the largest water bowl in the Islamic world, made of seven metals.",
+  "The Sauran ancient settlement features unique underground water channels called 'karez'.",
+  "Shymkent has a vibrant bazaar culture, with the Upper Market being one of the oldest.",
+  "The region's cuisine is heavily influenced by Uzbek culinary traditions due to its proximity to the border.",
+  "The Ukash Ata Well near Turkestan is believed to grant water only to those with pure hearts.",
+  "Shymkent is surrounded by three rivers: Badam, Koshkarata, and Sayramsu.",
+  "The Koshkarata River originates from a spring in the center of Shymkent and is considered sacred.",
+  "Turkestan was the capital of the Kazakh Khanate from the 16th to the 18th centuries.",
+  "The region hosts the annual 'Tulip Festival' to celebrate the blooming of wild tulips."
+]
+
+const currentFactIndex = ref(0)
+let factTimer
+
+onMounted(() => {
+  factTimer = setInterval(() => {
+    currentFactIndex.value = (currentFactIndex.value + 1) % facts.length
+  }, 15000)
+})
+
+onUnmounted(() => {
+  if (factTimer) clearInterval(factTimer)
+})
+
+const currentFact = computed(() => facts[currentFactIndex.value])
 
 // Date formatting
 const currentDate = computed(() => {
@@ -282,3 +335,15 @@ const events = ref([
   }
 ])
 </script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

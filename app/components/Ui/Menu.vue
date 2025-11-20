@@ -32,15 +32,15 @@
             </div>
 
             <div class="menu-col">
-              <div class="menu-tag hover:underline"><NuxtLink to="/journey" @click="closeMenu">Start Journey</NuxtLink></div>
+              <div class="menu-tag hover:underline"><NuxtLink to="/journey" @click="closeMenu">Start Journey -></NuxtLink></div>
             </div>
           </div>
           <div class="menu-footer">
             <div class="menu-col ">
-              <p class="!font-mono">Turkestan Region, Kazakhstan</p>
+              <p>Turkestan Region, Kazakhstan</p>
             </div>
             <div class="menu-col">
-              <p>42.3205° N, 69.5876° E</p>
+              <p class="!font-mono">42.3205° N, 69.5876° E</p>
               <p>shymkentvisit@gmail.com</p>
             </div>
           </div>
