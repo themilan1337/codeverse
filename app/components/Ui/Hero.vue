@@ -8,11 +8,13 @@
           Discover the 
           <span class="relative inline-block">
             ancient soul
-            <svg class="absolute w-full h-3 -bottom-1 left-0 text-accent-blue opacity-80" viewBox="0 0 100 10" preserveAspectRatio="none">
+            <svg class="absolute w-full h-3 -bottom-1 left-0 text-accent-red opacity-80" viewBox="0 0 100 10" preserveAspectRatio="none">
               <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="3" fill="none" />
             </svg>
           </span>
-          of Shymkent & Turkestan
+          of Shymkent 
+          <img src="/assets/images/shymkent_logo.png" alt="Shymkent" class="inline-block h-[0.8em] w-auto -mt-4 mx-2 align-middle" />
+          & Turkestan
         </h1>
       </div>
 

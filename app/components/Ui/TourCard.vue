@@ -16,7 +16,7 @@
         {{ title }}
       </h3>
       
-      <div class="flex items-center gap-2 text-white/90 text-sm font-medium group-hover:text-accent-blue transition-colors">
+      <div class="flex items-center gap-2 text-white/90 text-sm font-medium group-hover:text-accent-red transition-colors">
         <span>Discover now</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1">
           <line x1="5" y1="12" x2="19" y2="12"></line>

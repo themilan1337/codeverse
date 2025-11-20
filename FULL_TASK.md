@@ -108,7 +108,7 @@ Nuxt config:
 * modules: @nuxtjs/tailwindcss, @pinia/nuxt, @nuxtjs/i18n (configure locales ru,kz,en)
 * runtimeConfig: public: { MAPBOX_TOKEN: process.env.MAPBOX_TOKEN }, private: { OPENAI_API_KEY: process.env.OPENAI_API_KEY }
   Tailwind config:
-* extend: fontFamily: { sans: ['Inter var', 'system-ui'] }, colors: add accent-blue: '#00A6FF'
+* extend: fontFamily: { sans: ['Inter var', 'system-ui'] }, colors: add accent-red: '#00A6FF'
 * borderRadius: add '2xl': '1.5rem', '3xl': '2rem'
 * boxShadow: soft-lg etc.
   Global styles:

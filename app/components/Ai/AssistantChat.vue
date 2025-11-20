@@ -22,7 +22,7 @@
         <div v-for="(msg, idx) in messages" :key="idx" class="flex flex-col gap-1" :class="msg.role === 'user' ? 'items-end' : 'items-start'">
           <div 
             class="max-w-[85%] p-3 rounded-2xl text-sm leading-relaxed prose prose-sm prose-p:my-1 prose-ul:my-1 prose-li:my-0"
-            :class="msg.role === 'user' ? 'bg-accent-blue text-white rounded-br-none' : 'bg-white border border-gray-200 text-gray-800 rounded-bl-none shadow-sm'"
+            :class="msg.role === 'user' ? 'bg-accent-red text-white rounded-br-none' : 'bg-white border border-gray-200 text-gray-800 rounded-bl-none shadow-sm'"
             v-html="renderMessage(msg.content)"
           >
           </div>
@@ -43,12 +43,12 @@
             v-model="input" 
             type="text" 
             placeholder="Ask about Shymkent..." 
-            class="flex-1 bg-gray-100 border-0 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-accent-blue outline-none"
+            class="flex-1 bg-gray-100 border-0 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-accent-red outline-none"
           />
           <button 
             type="submit" 
             :disabled="!input.trim() || isLoading"
-            class="bg-accent-blue text-white p-2.5 rounded-xl hover:bg-accent-hover disabled:opacity-50 transition-colors"
+            class="bg-accent-red text-white p-2.5 rounded-xl hover:bg-accent-hover disabled:opacity-50 transition-colors"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
           </button>
