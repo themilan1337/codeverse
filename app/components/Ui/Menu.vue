@@ -11,7 +11,13 @@
       
       <div class="menu-overlay-content">
         <div class="menu-media-wrapper">
-          <img src="https://static.tildacdn.pro/tild6262-3861-4461-b164-616139663664/photo_2023-05-24_17-.jpg" alt="Menu background" />
+          <NuxtImg 
+            src="https://static.tildacdn.pro/tild6262-3861-4461-b164-616139663664/photo_2023-05-24_17-.jpg" 
+            alt="Menu background" 
+            loading="lazy"
+            decoding="async"
+            :placeholder="[50, 25, 75, 5]"
+          />
         </div>
         <div class="menu-content-wrapper">
           <div class="menu-content-main">

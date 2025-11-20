@@ -13,7 +13,15 @@
             </svg>
           </span>
           of Shymkent 
-          <img src="/assets/images/shymkent_logo.png" alt="Shymkent" class="inline-block h-[0.8em] w-auto -mt-4 mx-2 align-middle" />
+          <NuxtImg 
+            src="/assets/images/shymkent_logo.png" 
+            alt="Shymkent" 
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+            :placeholder="[50, 25, 75, 5]"
+            class="inline-block h-[0.8em] w-auto -mt-4 mx-2 align-middle" 
+          />
           & Turkestan
         </h1>
 
@@ -36,9 +44,13 @@
       <div class="lg:col-span-5 h-full">
         <div class="relative w-full h-full min-h-[400px] rounded-[2.5rem] overflow-hidden group isolation-auto">
           <!-- Background Image -->
-          <img 
+          <NuxtImg 
             src="https://informburo.kz/storage/photos/72/main/iGSh3bFfQAuNU9dytwSSsnRRabvtXCLjCi7D2eGa.jpg" 
             alt="Shymkent & Turkestan" 
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+            :placeholder="[50, 25, 75, 5]"
             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
           

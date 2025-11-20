@@ -13,4 +13,11 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
+  image: {
+    domains: [
+      'informburo.kz',
+      'upload.wikimedia.org',
+      'static.tildacdn.pro',
+    ],
+  },
 });

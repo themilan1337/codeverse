@@ -1,9 +1,12 @@
 <template>
   <div class="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-all duration-500">
     <!-- Image -->
-    <img 
+    <NuxtImg 
       :src="image" 
       :alt="title" 
+      loading="lazy"
+      decoding="async"
+      :placeholder="[50, 25, 75, 5]"
       class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
     />
     

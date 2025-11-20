@@ -50,7 +50,14 @@ onUnmounted(() => {
     <!-- Logo -->
     <div class="flex items-center gap-2">
       <NuxtLink to="/">
-        <img class="w-16 h-auto" src="https://upload.wikimedia.org/wikipedia/commons/6/66/Shymkent_logo.svg" alt=""></img>
+        <NuxtImg 
+          class="w-16 h-auto" 
+          src="https://upload.wikimedia.org/wikipedia/commons/6/66/Shymkent_logo.svg" 
+          alt=""
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
       </NuxtLink>
     </div>
 
