@@ -1,3 +1,65 @@
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
+
+interface SlideImage {
+  src: string
+  alt: string
+  title: string
+  description: string
+}
+
+const slides = ref<SlideImage[]>([
+  {
+    src: '/assets/images/cave.jpg',
+    alt: 'Shymkent & Turkestan',
+    title: 'Experience the warmth of the South',
+    description: 'From the spiritual domes of Turkestan to the vibrant streets of Shymkent.'
+  },
+  {
+    src: '/assets/images/turkestan1.jpg',
+    alt: 'Turkestan Heritage',
+    title: 'Explore Ancient Turkestan',
+    description: 'Discover the magnificent architecture and rich history of this sacred city.'
+  },
+  {
+    src: '/assets/images/shymkent_city.jpg',
+    alt: 'Shymkent City',
+    title: 'Modern Shymkent',
+    description: 'Experience the vibrant culture and modern energy of Southern Kazakhstan.'
+  },
+  {
+    src: '/assets/images/citadel.jpg',
+    alt: 'Ancient Citadel',
+    title: 'Historic Landmarks',
+    description: 'Walk through centuries of history in our preserved ancient sites.'
+  },
+  {
+    src: '/assets/images/sayram.jpg',
+    alt: 'Sayram',
+    title: 'Sacred Sayram',
+    description: 'Visit one of the oldest cities in Kazakhstan with unique spiritual heritage.'
+  }
+])
+
+const currentSlide = ref(0)
+let slideInterval: NodeJS.Timeout | null = null
+
+const nextSlide = () => {
+  currentSlide.value = (currentSlide.value + 1) % slides.value.length
+}
+
+onMounted(() => {
+  // Auto-advance slides every 5 seconds
+  slideInterval = setInterval(nextSlide, 5000)
+})
+
+onUnmounted(() => {
+  if (slideInterval) {
+    clearInterval(slideInterval)
+  }
+})
+</script>
+
 <template>
   <section class="w-full px-4 md:px-12 pt-8 md:pt-12 pb-8">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -42,22 +104,44 @@
 
       <div class="lg:col-span-5 h-full">
         <div class="relative w-full h-full min-h-[300px] md:min-h-[400px] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden group isolation-auto">
-          <NuxtImg 
-            src="/assets/images/cave.jpg" 
-            alt="Shymkent & Turkestan" 
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-            :placeholder="[50, 25, 75, 5]"
-            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
+          <!-- Slideshow Images -->
+          <div 
+            v-for="(slide, index) in slides" 
+            :key="index"
+            class="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+            :class="index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'"
+          >
+            <NuxtImg 
+              :src="slide.src" 
+              :alt="slide.alt" 
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+              :placeholder="[50, 25, 75, 5]"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
           
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-20"></div>
 
-          <div class="relative z-10 h-full flex flex-col justify-end p-6 md:p-10 gap-6">
-            <h2 class="text-2xl md:text-3xl text-white leading-tight font-bold drop-shadow-md">
-              Experience the warmth of the South. From the spiritual domes of Turkestan to the vibrant streets of Shymkent.
-            </h2>
+          <div class="relative z-30 h-full flex flex-col justify-end p-6 md:p-10 gap-6">
+            <!-- Dynamic Content with fade transition -->
+            <div class="relative">
+              <div 
+                v-for="(slide, index) in slides" 
+                :key="`text-${index}`"
+                class="absolute w-full transition-opacity duration-700"
+                :class="index === currentSlide ? 'opacity-100' : 'opacity-0 pointer-events-none'"
+              >
+                <h2 class="text-2xl md:text-3xl text-white leading-tight font-bold drop-shadow-md">
+                  {{ slide.title }}. {{ slide.description }}
+                </h2>
+              </div>
+              <!-- Spacer to maintain height -->
+              <h2 class="text-2xl md:text-3xl text-white leading-tight font-bold drop-shadow-md opacity-0">
+                {{ slides[0].title }}. {{ slides[0].description }}
+              </h2>
+            </div>
             
             <div>
               <NuxtLink 
@@ -78,6 +162,18 @@
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
               </NuxtLink>
+            </div>
+
+            <!-- Slide indicators -->
+            <div class="flex gap-2 mt-2">
+              <button 
+                v-for="(_, index) in slides" 
+                :key="`indicator-${index}`"
+                @click="currentSlide = index"
+                class="w-2 h-2 rounded-full transition-all duration-300"
+                :class="index === currentSlide ? 'bg-white w-6' : 'bg-white/50 hover:bg-white/75'"
+                :aria-label="`Go to slide ${index + 1}`"
+              />
             </div>
           </div>
         </div>
