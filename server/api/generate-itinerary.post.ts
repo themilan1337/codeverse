@@ -1,8 +1,6 @@
 import OpenAI from 'openai'
 import destinations from '../../app/data/destinations.json'
-
-import fs from 'node:fs'
-import path from 'node:path'
+import imagesData from '../../app/data/images.json'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
@@ -20,43 +18,19 @@ export default defineEventHandler(async (event) => {
     apiKey: apiKey
   })
 
-  // Dynamically get all images from public/assets/images
-  const imagesDir = path.join(process.cwd(), 'public', 'assets', 'images')
-  let allImages: string[] = []
-
-  try {
-    const files = fs.readdirSync(imagesDir)
-    allImages = files
-      .filter(file => /\.(jpg|jpeg|png|webp|avif)$/i.test(file))
-      .map(file => {
-        // Create a readable title from filename (e.g., "shymkent-zoo.jpg" -> "Shymkent Zoo")
-        const title = file
-          .replace(/\.(jpg|jpeg|png|webp|avif)$/i, '')
-          .split(/[-_]/)
-          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(' ')
-
-        return `- ${title}: /assets/images/${file}`
-      })
-  } catch (e) {
-    console.error('Error reading images directory:', e)
-    // Fallback to destinations data if file system access fails
-    allImages = destinations.map((d: any) => `- ${d.title}: ${d.image}`)
-  }
-
-  // Prepare available images context
-  const availableImages = allImages.join('\n')
+  // Use statically generated image list (works on Vercel)
+  const availableImages = imagesData.map((img: { title: string, path: string }) => `- ${img.title}: ${img.path} `).join('\n')
 
   // Construct the prompt based on user preferences
-  const prompt = `You are a travel expert specializing in Shymkent, Turkestan and Turkestan Region, Kazakhstan. Create a detailed, and personalized travel itinerary based on the following preferences:
+  const prompt = `You are a travel expert specializing in Shymkent, Turkestan and Turkestan Region, Kazakhstan.Create a detailed, and personalized travel itinerary based on the following preferences:
 
-**Season:** ${season}
-**Interests:** ${preferences.join(', ')}
-**Budget:** ${budget}
-**Travel Style:** ${travelStyle}
+** Season:** ${season}
+** Interests:** ${preferences.join(', ')}
+** Budget:** ${budget}
+** Travel Style:** ${travelStyle}
 
-**Available Visuals:**
-The following real images are available for specific locations. When you recommend or mention these places, YOU MUST include the corresponding image using standard Markdown syntax: \`![Alt Text](Image URL)\`.
+** Available Visuals:**
+  The following real images are available for specific locations.When you recommend or mention these places, YOU MUST include the corresponding image using standard Markdown syntax: \`![Alt Text](Image URL)\`.
 ${availableImages}
 
 Please create a comprehensive itinerary that includes:
@@ -71,10 +45,16 @@ Please create a comprehensive itinerary that includes:
 
 Format your response in beautiful, well-structured Markdown. Use headers (##, ###), lists, bold text, and emojis where appropriate to make it engaging and easy to read. Be specific with place names, timings, and prices when relevant.
 
-Make this feel like a premium for tourists, sophisticated, and tailored specifically to their preferences. Write in a warm, engaging tone that inspires excitement about the journey. Ensure images are placed contextually right after the location is described.`
+Make this feel like a premium for tourists, sophisticated, and tailored specifically to their preferences. Write in a warm, engaging tone that inspires excitement about the journey. Ensure images are placed contextually right after the location is described.
+
+Developer Notes:
+- Do not include Nauryz Park near the Mega planet mall.
+- DoubleTree by Hilton in Shymkent, Kazakhstan Location: Situated near Abay Park, a short distance from the city center and the airport. Amenities: Offers an indoor pool, fitness center, on-site restaurant, bar, and free Wi-Fi. Business facilities: Provides conference rooms for meetings and events. Family-friendly: Features a special Family Experience program for children under 12.  Цена примерно 40000 тенге за ночь
+- Megapolis Hotel Shymkent – это комфортабельный 4-звездочный отель, где соотношение цены и качества превзойдет  все Ваши ожидания. В отеле имеется 35 номеров категории «Делюкс», 2 номера категории «Улучшенный Делюкс», 4 номера  категории «Люкс»; 2 конференц-зала «Астана» и «Алмата» , фитнес-центр, ресторан, круглосуточная стойка регистрации. Осуществляется доставка еды и напитков в номер 24/7. Цена делюкс примерно 35000 тенге за ночь
+- Rixos Khadisha Shymkent -  Цена примерно 140000 тенге за ночь (за человека, solo).
+`
 
   try {
-    // Use GPT-4 (gpt-5.1 doesn't exist yet, using the latest available model)
     const stream = await openai.chat.completions.create({
       model: 'gpt-5.1',
       messages: [
@@ -88,11 +68,10 @@ Make this feel like a premium for tourists, sophisticated, and tailored specific
         }
       ],
       temperature: 0.8,
-      max_tokens: 10000,
+      max_completion_tokens: 100000,
       stream: true
     })
 
-    // Set up Server-Sent Events for streaming
     const encoder = new TextEncoder()
 
     const readableStream = new ReadableStream({
@@ -106,7 +85,6 @@ Make this feel like a premium for tourists, sophisticated, and tailored specific
             }
           }
 
-          // Send completion signal
           controller.enqueue(encoder.encode('data: [DONE]\n\n'))
           controller.close()
         } catch (error) {
