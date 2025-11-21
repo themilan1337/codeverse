@@ -1,6 +1,9 @@
 import OpenAI from 'openai'
 import destinations from '../../app/data/destinations.json'
 
+import fs from 'node:fs'
+import path from 'node:path'
+
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const { season, preferences, budget, travelStyle } = body
@@ -17,8 +20,32 @@ export default defineEventHandler(async (event) => {
     apiKey: apiKey
   })
 
+  // Dynamically get all images from public/assets/images
+  const imagesDir = path.join(process.cwd(), 'public', 'assets', 'images')
+  let allImages: string[] = []
+
+  try {
+    const files = fs.readdirSync(imagesDir)
+    allImages = files
+      .filter(file => /\.(jpg|jpeg|png|webp|avif)$/i.test(file))
+      .map(file => {
+        // Create a readable title from filename (e.g., "shymkent-zoo.jpg" -> "Shymkent Zoo")
+        const title = file
+          .replace(/\.(jpg|jpeg|png|webp|avif)$/i, '')
+          .split(/[-_]/)
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ')
+
+        return `- ${title}: /assets/images/${file}`
+      })
+  } catch (e) {
+    console.error('Error reading images directory:', e)
+    // Fallback to destinations data if file system access fails
+    allImages = destinations.map((d: any) => `- ${d.title}: ${d.image}`)
+  }
+
   // Prepare available images context
-  const availableImages = destinations.map((d: any) => `- ${d.title}: ${d.image}`).join('\n')
+  const availableImages = allImages.join('\n')
 
   // Construct the prompt based on user preferences
   const prompt = `You are a travel expert specializing in Shymkent, Turkestan and Turkestan Region, Kazakhstan. Create a detailed, and personalized travel itinerary based on the following preferences:
