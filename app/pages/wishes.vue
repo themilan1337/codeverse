@@ -97,13 +97,6 @@ onMounted(() => {
           <p class="text-xl md:text-2xl font-light max-w-2xl mx-auto opacity-90">
             Leave your mark. Share your wish. Be part of our story.
           </p>
-          
-          <button 
-            @click="isModalOpen = true"
-            class="mt-10 px-8 py-4 bg-white text-black rounded-full font-bold text-lg hover:bg-accent-red hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg"
-          >
-            Sign the Guestbook
-          </button>
         </div>
       </div>
     </div>
@@ -117,6 +110,12 @@ onMounted(() => {
           Travelers from every corner of the globe have visited Shymkent and Turkestan. 
           Here are their messages, sketches, and signatures. Add yours to the collection!
         </p>
+        <button 
+            @click="isModalOpen = true"
+            class="mt-10 px-8 py-4 bg-accent-red rounded-full font-bold text-lg hover:bg-accent-hover transition text-white"
+          >
+            Sign the Guestbook
+          </button>
       </div>
 
       <!-- Loading State -->
