@@ -197,7 +197,7 @@
               </svg>
             </div>
             <h3 class="text-3xl font-display font-bold text-text-main">Your Journey Awaits</h3>
-            <p class="text-gray-500">Here's your personalized itinerary for Shymkent & Turkestan</p>
+            <p class="text-gray-500">Here's your personalized itinerary for Shymkent & Turkestan Region</p>
           </div>
 
           <!-- AI Response Content -->
@@ -670,9 +670,19 @@ const restartWizard = () => {
 .prose :deep(img) {
   max-width: 100%;
   height: auto;
-  border-radius: 0.75rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+  border-radius: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.prose :deep(img):hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Print Styles */

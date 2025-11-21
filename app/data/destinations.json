@@ -28,7 +28,6 @@
         "description": "Shymkent is a vibrant metropolis with a warm southern soul. It blends ancient history with modern energy. From the bustling bazaars to the ancient citadel, Shymkent offers a unique experience of Kazakh hospitality and culture.",
         "image": "/assets/images/shymkent_city.jpg",
         "images": [
-            "/assets/images/shymkent_city.jpg",
             "/assets/images/citadel.jpg"
         ],
         "tags": [

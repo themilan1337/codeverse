@@ -1,4 +1,5 @@
 import OpenAI from 'openai'
+import destinations from '../../app/data/destinations.json'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
@@ -16,18 +17,25 @@ export default defineEventHandler(async (event) => {
     apiKey: apiKey
   })
 
+  // Prepare available images context
+  const availableImages = destinations.map((d: any) => `- ${d.title}: ${d.image}`).join('\n')
+
   // Construct the prompt based on user preferences
-  const prompt = `You are a luxury travel expert specializing in Shymkent and Turkestan, Kazakhstan. Create a premium, detailed, and personalized travel itinerary based on the following preferences:
+  const prompt = `You are a travel expert specializing in Shymkent, Turkestan and Turkestan Region, Kazakhstan. Create a detailed, and personalized travel itinerary based on the following preferences:
 
 **Season:** ${season}
 **Interests:** ${preferences.join(', ')}
 **Budget:** ${budget}
 **Travel Style:** ${travelStyle}
 
+**Available Visuals:**
+The following real images are available for specific locations. When you recommend or mention these places, YOU MUST include the corresponding image using standard Markdown syntax: \`![Alt Text](Image URL)\`.
+${availableImages}
+
 Please create a comprehensive itinerary that includes:
 
 1. **Welcome & Overview** - A captivating introduction to what makes this journey special
-2. **Day-by-Day Itinerary** - Detailed daily plans (suggest 3-5 days)
+2. **Day-by-Day Itinerary** - Detailed daily plans (suggest 3-5 days). **CRITICAL: Insert relevant images from the "Available Visuals" list for each day/location.**
 3. **Must-Visit Attractions** - Key locations in both Shymkent and Turkestan
 4. **Local Cuisine Recommendations** - Authentic dining experiences
 5. **Cultural Insights** - Important customs and traditions
@@ -36,12 +44,12 @@ Please create a comprehensive itinerary that includes:
 
 Format your response in beautiful, well-structured Markdown. Use headers (##, ###), lists, bold text, and emojis where appropriate to make it engaging and easy to read. Be specific with place names, timings, and prices when relevant.
 
-Make this feel premium, sophisticated, and tailored specifically to their preferences. Write in a warm, engaging tone that inspires excitement about the journey.`
+Make this feel like a premium for tourists, sophisticated, and tailored specifically to their preferences. Write in a warm, engaging tone that inspires excitement about the journey. Ensure images are placed contextually right after the location is described.`
 
   try {
     // Use GPT-4 (gpt-5.1 doesn't exist yet, using the latest available model)
     const stream = await openai.chat.completions.create({
-      model: 'gpt-4-turbo-preview',
+      model: 'gpt-5.1',
       messages: [
         {
           role: 'system',
@@ -53,7 +61,7 @@ Make this feel premium, sophisticated, and tailored specifically to their prefer
         }
       ],
       temperature: 0.8,
-      max_tokens: 3000,
+      max_tokens: 10000,
       stream: true
     })
 

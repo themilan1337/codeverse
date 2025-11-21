@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen pt-32 px-6 md:px-12 pb-24">
+  <div class="min-h-screen pt-10 px-6 md:px-12 pb-24">
     <JourneyWizard />
   </div>
 </template>
