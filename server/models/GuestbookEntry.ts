@@ -11,4 +11,12 @@ const schema = new mongoose.Schema({
 // Disable buffering for this model
 schema.set('bufferCommands', false);
 
-export const GuestbookEntry = mongoose.models.GuestbookEntry || mongoose.model('GuestbookEntry', schema)
+export interface IGuestbookEntry extends mongoose.Document {
+    message: string
+    signature: string
+    author: string
+    color: string
+    createdAt: Date
+}
+
+export const GuestbookEntry: mongoose.Model<IGuestbookEntry> = mongoose.models.GuestbookEntry as mongoose.Model<IGuestbookEntry> || mongoose.model<IGuestbookEntry>('GuestbookEntry', schema)

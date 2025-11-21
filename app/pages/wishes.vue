@@ -15,7 +15,16 @@ useSeoMeta({
 const isModalOpen = ref(false)
 const isLoading = ref(false)
 const isSubmitting = ref(false)
-const entries = ref([])
+interface GuestbookEntry {
+  id: string
+  message: string
+  signature: string
+  author: string
+  createdAt: string
+  color: string
+}
+
+const entries = ref<GuestbookEntry[]>([])
 
 const form = ref({
   message: '',
@@ -23,12 +32,12 @@ const form = ref({
   color: '#000000'
 })
 
-const canvasRef = ref(null)
+const canvasRef = ref<InstanceType<typeof SignatureCanvas> | null>(null)
 
 const fetchEntries = async () => {
   isLoading.value = true
   try {
-    const data = await $fetch('/api/guestbook')
+    const data = await $fetch<GuestbookEntry[]>('/api/guestbook')
     entries.value = data
   } catch (error) {
     console.error('Failed to fetch entries:', error)

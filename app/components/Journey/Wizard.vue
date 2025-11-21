@@ -191,10 +191,8 @@
         <div v-else-if="currentStep === 6" key="step6" class="space-y-8">
           <!-- Header -->
           <div class="text-center mb-8 space-y-4">
-            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-4">
-              <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
+            <div class="inline-flex items-center justify-center w-16 h-16 mb-4">
+              <img src="/assets/images/shymkent_logo.png" alt=""> 
             </div>
             <h3 class="text-3xl font-display font-bold text-text-main">Your Journey Awaits</h3>
             <p class="text-gray-500">Here's your personalized itinerary for Shymkent & Turkestan Region</p>
@@ -221,7 +219,7 @@
               </svg>
             </button>
 
-            <button @click="window.print()"
+            <button @click="printPage"
               class="px-8 py-4 bg-white text-text-main border-2 border-gray-200 rounded-full font-medium hover:border-accent-red hover:text-accent-red transition-all duration-300 flex items-center justify-center gap-2">
               <span>Print</span>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -489,6 +487,10 @@ const restartWizard = () => {
   formData.preferences = []
   formData.budget = ''
   formData.travelStyle = ''
+}
+
+const printPage = () => {
+  window.print()
 }
 </script>
 

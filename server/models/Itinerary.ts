@@ -27,4 +27,13 @@ const itinerarySchema = new mongoose.Schema({
     }
 })
 
-export const Itinerary = mongoose.models.Itinerary || mongoose.model('Itinerary', itinerarySchema)
+export interface IItinerary extends mongoose.Document {
+    season: string
+    preferences: string[]
+    budget: string
+    travelStyle: string
+    content: string
+    createdAt: Date
+}
+
+export const Itinerary: mongoose.Model<IItinerary> = mongoose.models.Itinerary as mongoose.Model<IItinerary> || mongoose.model<IItinerary>('Itinerary', itinerarySchema)

@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
         }
 
         const entries = await GuestbookEntry.find().sort({ createdAt: -1 }).limit(100)
-        return entries.map(entry => ({
+        return entries.map((entry: any) => ({
             id: entry._id,
             message: entry.message,
             signature: entry.signature,

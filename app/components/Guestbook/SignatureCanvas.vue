@@ -61,8 +61,13 @@ const draw = (e: MouseEvent | TouchEvent) => {
     clientX = e.clientX
     clientY = e.clientY
   } else {
-    clientX = e.touches[0].clientX
-    clientY = e.touches[0].clientY
+    const touch = e.touches[0]
+    if (touch) {
+      clientX = touch.clientX
+      clientY = touch.clientY
+    } else {
+      return
+    }
   }
 
   const x = clientX - rect.left

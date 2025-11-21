@@ -29,13 +29,13 @@
           <!-- Tags -->
           <div class="flex flex-wrap justify-center gap-2 mt-4">
             <span class="px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 capitalize">
-              {{ itinerary.season }}
+              {{ itinerary?.season }}
             </span>
             <span class="px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 capitalize">
-              {{ itinerary.budget }} Budget
+              {{ itinerary?.budget }} Budget
             </span>
             <span class="px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 capitalize">
-              {{ itinerary.travelStyle }} Style
+              {{ itinerary?.travelStyle }} Style
             </span>
           </div>
         </div>
@@ -67,7 +67,14 @@ import { marked } from 'marked'
 const route = useRoute()
 const id = route.params.id
 
-const { data: itinerary, pending, error } = await useFetch(`/api/itinerary/${id}`)
+interface Itinerary {
+  season: string
+  budget: string
+  travelStyle: string
+  content: string
+}
+
+const { data: itinerary, pending, error } = await useFetch<Itinerary>(`/api/itinerary/${id}`)
 
 // Configure marked
 marked.setOptions({
@@ -76,8 +83,9 @@ marked.setOptions({
 })
 
 const renderedContent = computed(() => {
-  if (!itinerary.value?.content) return ''
-  return marked(itinerary.value.content)
+  const content = itinerary.value?.content
+  if (!content) return ''
+  return marked(content)
 })
 
 const printItinerary = () => {

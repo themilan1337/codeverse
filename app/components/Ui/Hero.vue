@@ -145,7 +145,7 @@ onUnmounted(() => {
               </div>
               <!-- Spacer to maintain height -->
               <h2 class="text-2xl md:text-3xl text-white leading-tight font-bold drop-shadow-md opacity-0">
-                {{ slides[0].title }}. {{ slides[0].description }}
+                {{ slides[0]?.title }}. {{ slides[0]?.description }}
               </h2>
             </div>
             
