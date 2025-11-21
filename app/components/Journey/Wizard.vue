@@ -206,16 +206,55 @@
           </div>
 
           <!-- Action Buttons -->
-          <div class="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+          <div class="flex flex-col sm:flex-row gap-4 justify-center pt-8 no-print">
             <button @click="restartWizard"
-              class="px-8 py-4 bg-accent-red text-white rounded-full font-medium hover:bg-accent-hover transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+              class="px-8 py-4 bg-white text-text-main border-2 border-gray-200 rounded-full font-medium hover:border-accent-red hover:text-accent-red transition-all duration-300">
               Create Another Journey
             </button>
+            
+            <button @click="shareItinerary" :disabled="isSharing"
+              class="px-8 py-4 bg-accent-red text-white rounded-full font-medium hover:bg-accent-hover transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+              <span v-if="isSharing">Saving...</span>
+              <span v-else>Share Itinerary</span>
+              <svg v-if="!isSharing" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+              </svg>
+            </button>
+
             <button @click="window.print()"
-              class="px-8 py-4 bg-white text-text-main border-2 border-gray-200 rounded-full font-medium hover:border-accent-red hover:text-accent-red transition-all duration-300">
-              Print Itinerary
+              class="px-8 py-4 bg-white text-text-main border-2 border-gray-200 rounded-full font-medium hover:border-accent-red hover:text-accent-red transition-all duration-300 flex items-center justify-center gap-2">
+              <span>Print</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z" clip-rule="evenodd" />
+              </svg>
             </button>
           </div>
+
+          <!-- Share Modal -->
+          <Transition enter-active-class="transition duration-200 ease-out"
+            enter-from-class="transform scale-95 opacity-0" enter-to-class="transform scale-100 opacity-100"
+            leave-active-class="transition duration-75 ease-in" leave-from-class="transform scale-100 opacity-100"
+            leave-to-class="transform scale-95 opacity-0">
+            <div v-if="shareUrl" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" @click="shareUrl = ''">
+              <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl" @click.stop>
+                <div class="text-center mb-6">
+                  <h3 class="text-2xl font-bold text-text-main">Itinerary Saved!</h3>
+                  <p class="text-gray-500 mt-2">Your journey is ready to share.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-4 rounded-xl flex items-center gap-2 mb-6 border border-gray-200">
+                  <input type="text" :value="shareUrl" readonly class="bg-transparent flex-1 outline-none text-gray-600 text-sm font-mono">
+                  <button @click="copyToClipboard" class="text-accent-red hover:text-accent-hover font-medium text-sm">
+                    {{ copied ? 'Copied!' : 'Copy' }}
+                  </button>
+                </div>
+
+                <button @click="shareUrl = ''" class="w-full py-3 bg-gray-100 text-gray-700 rounded-xl font-medium hover:bg-gray-200 transition-colors">
+                  Close
+                </button>
+              </div>
+            </div>
+          </Transition>
         </div>
 
       </Transition>
@@ -232,6 +271,9 @@ const transitionName = ref('slide-next')
 const seasonDropdownRef = ref<HTMLElement | null>(null)
 const aiResponse = ref('')
 const isStreaming = ref(false)
+const isSharing = ref(false)
+const shareUrl = ref('')
+const copied = ref(false)
 
 const formData = reactive({
   season: '',
@@ -395,6 +437,42 @@ const finish = async () => {
       transitionName.value = 'fade'
       currentStep.value = 6
     }, 500)
+  }
+}
+
+const shareItinerary = async () => {
+  isSharing.value = true
+  try {
+    const response = await fetch('/api/itinerary/save', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ...formData,
+        content: aiResponse.value
+      }),
+    })
+
+    if (!response.ok) throw new Error('Failed to save')
+
+    const data = await response.json()
+    shareUrl.value = `${window.location.origin}/journey/${data.id}`
+  } catch (error) {
+    console.error('Error sharing itinerary:', error)
+    alert('Failed to share itinerary. Please try again.')
+  } finally {
+    isSharing.value = false
+  }
+}
+
+const copyToClipboard = async () => {
+  try {
+    await navigator.clipboard.writeText(shareUrl.value)
+    copied.value = true
+    setTimeout(() => copied.value = false, 2000)
+  } catch (err) {
+    console.error('Failed to copy:', err)
   }
 }
 
@@ -678,14 +756,36 @@ const restartWizard = () => {
   display: block;
 }
 
+.prose :deep(img):hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Print Styles */
 @media print {
-  .ai-response-container {
-    box-shadow: none;
-    border: 1px solid #e5e7eb;
+  .no-print {
+    display: none !important;
   }
 
-  button {
-    display: none;
+  .ai-response-container {
+    box-shadow: none;
+    border: none;
+  }
+  
+  /* Ensure content is visible */
+  body * {
+    visibility: hidden;
+  }
+  
+  .ai-response-container, .ai-response-container * {
+    visibility: visible;
+  }
+  
+  .ai-response-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
   }
 }
 </style>
