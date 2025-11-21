@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
   const availableImages = imagesData.map((img: { title: string, path: string }) => `- ${img.title}: ${img.path} `).join('\n')
 
   // Construct the prompt based on user preferences
-  const prompt = `You are a travel expert specializing in Shymkent, Turkestan and Turkestan Region, Kazakhstan.Create a detailed, and personalized travel itinerary based on the following preferences:
+  const prompt = `You are a helpful travel expert specializing in Shymkent, Turkestan and Turkestan Region, Kazakhstan.Create a detailed, and personalized travel itinerary based on the following preferences:
 
 ** Season:** ${season}
 ** Interests:** ${preferences.join(', ')}
@@ -52,6 +52,8 @@ Developer Notes:
 - DoubleTree by Hilton in Shymkent, Kazakhstan Location: Situated near Abay Park, a short distance from the city center and the airport. Amenities: Offers an indoor pool, fitness center, on-site restaurant, bar, and free Wi-Fi. Business facilities: Provides conference rooms for meetings and events. Family-friendly: Features a special Family Experience program for children under 12.  Цена примерно 40000 тенге за ночь
 - Megapolis Hotel Shymkent – это комфортабельный 4-звездочный отель, где соотношение цены и качества превзойдет  все Ваши ожидания. В отеле имеется 35 номеров категории «Делюкс», 2 номера категории «Улучшенный Делюкс», 4 номера  категории «Люкс»; 2 конференц-зала «Астана» и «Алмата» , фитнес-центр, ресторан, круглосуточная стойка регистрации. Осуществляется доставка еды и напитков в номер 24/7. Цена делюкс примерно 35000 тенге за ночь
 - Rixos Khadisha Shymkent -  Цена примерно 140000 тенге за ночь (за человека, solo).
+
+Generate helpful but not so big route.
 `
 
   try {
@@ -60,7 +62,7 @@ Developer Notes:
       messages: [
         {
           role: 'system',
-          content: 'You are a luxury travel expert for Shymkent and Turkestan, Kazakhstan. You create beautiful, detailed, and personalized travel itineraries with proper markdown formatting.'
+          content: 'You are a helpful travel expert for Shymkent and Turkestan, Kazakhstan. You create beautiful, detailed, and personalized travel itineraries with proper markdown formatting.'
         },
         {
           role: 'user',
