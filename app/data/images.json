@@ -88,10 +88,6 @@
     "path": "/assets/images/megapolis-hotel-shymkent.jpg"
   },
   {
-    "title": "Milan",
-    "path": "/assets/images/milan.jpg"
-  },
-  {
     "title": "Mountains",
     "path": "/assets/images/mountains.jpg"
   },
@@ -101,11 +97,11 @@
   },
   {
     "title": "Otrar",
-    "path": "/assets/images/otrar.jpeg"
+    "path": "/assets/images/otrar.jpg"
   },
   {
-    "title": "Otrar",
-    "path": "/assets/images/otrar.jpg"
+    "title": "Global Coffee (Popular Coffee Bar in shymkent and turkestan. Large amount of branches available)",
+    "path": "/assets/images/global-coffee-local-coffee-bar.jpeg"
   },
   {
     "title": "Plaza",
@@ -114,6 +110,18 @@
   {
     "title": "Rahima Plaza",
     "path": "/assets/images/rahima-plaza.webp"
+  },
+  {
+    "title": "Seyitzhan Kari Yeszhanuly Mosque (New mosque, opened in spring of 2024, The Seyitzhan Kari Yeszhanuly Mosque is in the running for two Guinness World Records: the largest dome in Central Asia and the tallest mihrab – a niche in the wall indicating the direction of Mecca. The main dome boasts a diameter of 56 meters (184 ft), and the mihrab reaches a height of 36 meters (118 ft). The mosque is also adorned with four minarets, each standing 63 meters (207 ft) tall, which is symbolic of the age of the Prophet Muhammad.) Image 1",
+    "path": "/assets/images/new-mosque-shymkent.jpeg"
+  },
+  {
+    "title": "Seyitzhan Kari Yeszhanuly Mosque (New mosque, opened in spring of 2024, The Seyitzhan Kari Yeszhanuly Mosque is in the running for two Guinness World Records: the largest dome in Central Asia and the tallest mihrab – a niche in the wall indicating the direction of Mecca. The main dome boasts a diameter of 56 meters (184 ft), and the mihrab reaches a height of 36 meters (118 ft). The mosque is also adorned with four minarets, each standing 63 meters (207 ft) tall, which is symbolic of the age of the Prophet Muhammad.) Image 2",
+    "path": "/assets/images/Seyitjan-Kari-Esjanuly-Mosque.jpg"
+  },
+  {
+    "title": "Seyitzhan Kari Yeszhanuly Mosque (New mosque, opened in spring of 2024, The Seyitzhan Kari Yeszhanuly Mosque is in the running for two Guinness World Records: the largest dome in Central Asia and the tallest mihrab – a niche in the wall indicating the direction of Mecca. The main dome boasts a diameter of 56 meters (184 ft), and the mihrab reaches a height of 36 meters (118 ft). The mosque is also adorned with four minarets, each standing 63 meters (207 ft) tall, which is symbolic of the age of the Prophet Muhammad.) Image 3",
+    "path": "/assets/images/seyizhan-kary-mosque.jpg"
   },
   {
     "title": "Rixos Shymkent",
@@ -182,10 +190,6 @@
   {
     "title": "Turkestan",
     "path": "/assets/images/turkestan.webp"
-  },
-  {
-    "title": "Yerkhan",
-    "path": "/assets/images/yerkhan.jpg"
   },
   {
     "title": "Yly Dala Eli Museum Turkestan",

@@ -290,9 +290,9 @@ const preferencesOptions = [
 
 const budgetOptions = [
   { id: 'minimal', label: 'Minimal', desc: 'Backpacker style, hostels & street food' },
-  { id: 'economy', label: '5,000 - 10,000 ₸', desc: 'Comfortable but budget-conscious' },
-  { id: 'standard', label: '10,000 - 25,000 ₸', desc: 'Hotels and nice dinners' },
-  { id: 'luxury', label: '25,000+ ₸', desc: 'Premium experiences and stays' }
+  { id: 'economy', label: '10,000 - 30,000 ₸', desc: 'Comfortable but budget-conscious' },
+  { id: 'standard', label: '30,000 - 70,000 ₸', desc: 'Hotels and nice dinners' },
+  { id: 'luxury', label: '70,000+ ₸', desc: 'Premium experiences and stays' }
 ]
 
 const travelStyleOptions = [
@@ -668,7 +668,7 @@ const restartWizard = () => {
 }
 
 .prose :deep(img) {
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
   border-radius: 1rem;
   margin-top: 2rem;
@@ -676,16 +676,8 @@ const restartWizard = () => {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.prose :deep(img):hover {
-  transform: scale(1.02);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-/* Print Styles */
 @media print {
   .ai-response-container {
     box-shadow: none;
