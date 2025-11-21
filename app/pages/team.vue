@@ -5,7 +5,7 @@
     <!-- Hero Section -->
     <div class="relative h-[60vh] w-full overflow-hidden">
       <NuxtImg
-        src="/assets/images/shymkent_city.jpg"
+        src="/assets/images/shymkent.jpeg"
         alt="Our Team"
         class="absolute inset-0 w-full h-full object-cover grayscale"
         loading="eager"
@@ -139,5 +139,11 @@
 </template>
 
 <script setup>
-// No special script needed
+useSeoMeta({
+  title: 'Our Team - Visit Shymkent',
+  ogTitle: 'Our Team - Visit Shymkent',
+  description: 'Meet the team behind the Visit Shymkent project. Developed for the ShymkentHub Hackathon.',
+  ogDescription: 'Meet the team behind the Visit Shymkent project. Developed for the ShymkentHub Hackathon.',
+  twitterCard: 'summary',
+})
 </script>

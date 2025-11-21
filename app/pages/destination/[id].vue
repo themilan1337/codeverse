@@ -119,13 +119,24 @@ const destination = computed(() => {
 })
 
 // Set page meta
-if (destination.value) {
-  useHead({
-    title: `${destination.value.title} - Visit Shymkent`,
-    meta: [
-      { name: 'description', content: destination.value.description }
-    ]
+const dest = destination.value
+if (dest) {
+  useSeoMeta({
+    title: () => `${dest.title} - Visit Shymkent`,
+    ogTitle: () => `${dest.title} - Visit Shymkent`,
+    description: () => dest.description,
+    ogDescription: () => dest.description,
+    ogImage: () => dest.image,
+    twitterCard: 'summary_large_image',
   })
+
+  useSchemaOrg([
+    definePlace({
+      name: dest.title,
+      description: dest.description,
+      image: dest.image,
+    })
+  ])
 }
 </script>
 

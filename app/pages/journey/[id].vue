@@ -83,6 +83,18 @@ const renderedContent = computed(() => {
 const printItinerary = () => {
   window.print()
 }
+
+const itin = itinerary.value as any
+if (itin) {
+  useSeoMeta({
+    title: () => `My Shymkent Journey - ${itin.season}`,
+    ogTitle: () => `My Shymkent Journey - ${itin.season}`,
+    description: () => `Check out my personalized ${itin.travelStyle} itinerary for Shymkent and Turkestan.`,
+    ogDescription: () => `Check out my personalized ${itin.travelStyle} itinerary for Shymkent and Turkestan.`,
+    twitterCard: 'summary',
+    robots: 'noindex'
+  })
+}
 </script>
 
 <style scoped>

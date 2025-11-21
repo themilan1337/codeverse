@@ -16,13 +16,13 @@ const slides = ref<SlideImage[]>([
     description: 'From the spiritual domes of Turkestan to the vibrant streets of Shymkent.'
   },
   {
-    src: '/assets/images/turkestan1.jpg',
+    src: '/assets/images/turkestan.jpg',
     alt: 'Turkestan Heritage',
     title: 'Explore Ancient Turkestan',
     description: 'Discover the magnificent architecture and rich history of this sacred city.'
   },
   {
-    src: '/assets/images/shymkent_city.jpg',
+    src: '/assets/images/shymkent.jpeg',
     alt: 'Shymkent City',
     title: 'Modern Shymkent',
     description: 'Experience the vibrant culture, innovations, traditions and modern energy of South.'

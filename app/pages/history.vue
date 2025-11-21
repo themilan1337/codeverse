@@ -97,5 +97,12 @@
 </template>
 
 <script setup>
-// No special script needed
+useSeoMeta({
+  title: 'History of Shymkent - Visit Shymkent',
+  ogTitle: 'History of Shymkent - From Silk Road to Metropolis',
+  description: 'Discover the rich history of Shymkent, from its origins as a Silk Road stop to its transformation into a modern metropolis.',
+  ogDescription: 'Discover the rich history of Shymkent, from its origins as a Silk Road stop to its transformation into a modern metropolis.',
+  ogImage: '/assets/images/history.jpg',
+  twitterCard: 'summary_large_image',
+})
 </script>

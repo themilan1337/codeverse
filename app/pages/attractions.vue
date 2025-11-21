@@ -82,5 +82,14 @@
 <script setup>
 import destinationsData from '~/data/destinations.json'
 
+useSeoMeta({
+  title: 'Top Attractions in Shymkent & Turkestan - Visit Shymkent',
+  ogTitle: 'Top Attractions in Shymkent & Turkestan',
+  description: 'Explore the best places to visit in Shymkent and Turkestan. From the Mausoleum of Khoja Ahmed Yasawi to vibrant bazaars and nature parks.',
+  ogDescription: 'Explore the best places to visit in Shymkent and Turkestan. From the Mausoleum of Khoja Ahmed Yasawi to vibrant bazaars and nature parks.',
+  ogImage: 'https://upload.wikimedia.org/wikipedia/commons/1/15/Karla_Marksa%2C_Kazakhstan_-_panoramio.jpg',
+  twitterCard: 'summary_large_image',
+})
+
 const destinations = destinationsData
 </script>

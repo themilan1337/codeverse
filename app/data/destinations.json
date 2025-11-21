@@ -4,9 +4,9 @@
         "title": "Turkestan",
         "subtitle": "The Spiritual Capital & Yasawi Mausoleum",
         "description": "Turkestan is one of Kazakhstan's most historic cities, with an archaeological record dating back to the 4th century. It was a major trade center on the Silk Road and is now the spiritual capital of the Turkic world. The centerpiece is the Mausoleum of Khoja Ahmed Yasawi, a UNESCO World Heritage site.",
-        "image": "/assets/images/turkestan1.jpg",
+        "image": "/assets/images/turkestan.jpg",
         "images": [
-            "/assets/images/turkestan1.jpg",
+            "/assets/images/turkestan.jpg",
             "/assets/images/turkestan.jpg"
         ],
         "tags": [
@@ -26,7 +26,7 @@
         "title": "Shymkent",
         "subtitle": "City Vibes: Citadel & Old Town",
         "description": "Shymkent is a vibrant metropolis with a warm southern soul. It blends ancient history with modern energy. From the bustling bazaars to the ancient citadel, Shymkent offers a unique experience of Kazakh hospitality and culture.",
-        "image": "/assets/images/shymkent_city.jpg",
+        "image": "/assets/images/shymkent.jpeg",
         "images": [
             "/assets/images/citadel.jpg"
         ],

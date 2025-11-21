@@ -5,7 +5,7 @@
     <!-- Hero Section -->
     <div class="relative h-[60vh] w-full overflow-hidden">
       <NuxtImg
-        src="/assets/images/shymkent_city.jpg"
+        src="/assets/images/shymkent.jpeg"
         alt="Contact Us"
         class="absolute inset-0 w-full h-full object-cover"
         loading="eager"
@@ -117,5 +117,12 @@
 </template>
 
 <script setup>
-// No special script needed
+useSeoMeta({
+  title: 'Contact Us - Visit Shymkent',
+  ogTitle: 'Contact Us - Visit Shymkent',
+  description: 'Get in touch with the Visit Shymkent team. We are here to help you plan your trip to Shymkent and Turkestan.',
+  ogDescription: 'Get in touch with the Visit Shymkent team. We are here to help you plan your trip to Shymkent and Turkestan.',
+  ogImage: '/assets/images/shymkent.jpeg',
+  twitterCard: 'summary_large_image',
+})
 </script>

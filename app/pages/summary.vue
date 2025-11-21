@@ -175,6 +175,15 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 
+useSeoMeta({
+  title: 'Shymkent City Pulse - Weather, Events, and Facts',
+  ogTitle: 'Shymkent City Pulse - Weather, Events, and Facts',
+  description: 'Stay updated with the latest weather, upcoming events, and interesting facts about Shymkent. Your live dashboard for the city.',
+  ogDescription: 'Stay updated with the latest weather, upcoming events, and interesting facts about Shymkent. Your live dashboard for the city.',
+  ogImage: '/assets/images/cave.jpg',
+  twitterCard: 'summary_large_image',
+})
+
 
 
 

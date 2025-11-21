@@ -1,3 +1,13 @@
+<script setup lang="ts">
+useSeoMeta({
+  title: 'About Us - Visit Shymkent',
+  ogTitle: 'About Us - Visit Shymkent',
+  description: 'Learn about our mission to showcase the beauty and culture of Southern Kazakhstan.',
+  ogDescription: 'Learn about our mission to showcase the beauty and culture of Southern Kazakhstan.',
+  twitterCard: 'summary',
+})
+</script>
+
 <template>
   <div class="min-h-screen pt-32 px-6 md:px-12">
     <h1 class="text-4xl md:text-6xl font-display font-bold mb-8">About Us</h1>

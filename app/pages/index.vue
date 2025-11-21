@@ -62,7 +62,7 @@
             <!-- Card 1: Large Left -->
             <div class="md:col-span-2 relative rounded-[2.5rem] overflow-hidden group h-[400px] md:h-full">
               <NuxtImg 
-                src="/assets/images/shymkent_city.jpg" 
+                src="/assets/images/shymkent.jpeg" 
                 alt="City Life"
                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -169,7 +169,27 @@
 import { ref } from 'vue'
 import destinationsData from '~/data/destinations.json'
 
+useSeoMeta({
+  title: 'Visit Shymkent - The Ancient Soul of Kazakhstan',
+  ogTitle: 'Visit Shymkent - The Ancient Soul of Kazakhstan',
+  description: 'Discover Shymkent, the heart of the Silk Road. Explore ancient history, vibrant culture, and breathtaking nature in Southern Kazakhstan.',
+  ogDescription: 'Discover Shymkent, the heart of the Silk Road. Explore ancient history, vibrant culture, and breathtaking nature in Southern Kazakhstan.',
+  ogImage: '/assets/images/shymkent_city.jpg',
+  twitterCard: 'summary_large_image',
+})
 
+useSchemaOrg([
+  defineWebSite({
+    name: 'Visit Shymkent',
+  }),
+  defineWebPage({
+    name: 'Home',
+  }),
+  defineOrganization({
+    name: 'Visit Shymkent',
+    logo: '/assets/images/shymkent_logo.png',
+  })
+])
 
 const tours = destinationsData.slice(0, 3).map(d => ({
   ...d,

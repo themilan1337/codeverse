@@ -94,5 +94,11 @@
 </template>
 
 <script setup>
-// No special script needed for now
+useSeoMeta({
+  title: 'Visa Requirements for Kazakhstan - Visit Shymkent',
+  ogTitle: 'Visa Requirements for Kazakhstan - Visit Shymkent',
+  description: 'Check visa requirements for visiting Kazakhstan. Information on visa-free regime, e-Visa, and entry rules for tourists.',
+  ogDescription: 'Check visa requirements for visiting Kazakhstan. Information on visa-free regime, e-Visa, and entry rules for tourists.',
+  twitterCard: 'summary',
+})
 </script>

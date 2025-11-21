@@ -3,11 +3,13 @@ import { ref, onMounted } from 'vue'
 import SignatureCanvas from '~/components/Guestbook/SignatureCanvas.vue'
 import WishesGrid from '~/components/Guestbook/WishesGrid.vue'
 
-useHead({
+useSeoMeta({
   title: 'Guestbook - Visit Shymkent',
-  meta: [
-    { name: 'description', content: 'Leave your mark on the history of Shymkent. Sign our digital guestbook.' }
-  ]
+  ogTitle: 'Guestbook - Visit Shymkent',
+  description: 'Leave your mark on the history of Shymkent. Sign our digital guestbook and see wishes from travelers around the world.',
+  ogDescription: 'Leave your mark on the history of Shymkent. Sign our digital guestbook and see wishes from travelers around the world.',
+  ogImage: '/assets/images/history.jpg',
+  twitterCard: 'summary_large_image',
 })
 
 const isModalOpen = ref(false)

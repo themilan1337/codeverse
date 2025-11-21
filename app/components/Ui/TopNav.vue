@@ -62,9 +62,9 @@ onUnmounted(() => {
     </div>
 
     <!-- Center Info (Time) - Optional/Hidden on mobile -->
-    <div class="hidden md:block text-sm text-gray-500 font-mono min-w-[280px] text-center">
+    <h1 class="hidden md:block text-gray-500 font-normal text-sm min-w-[280px] text-center">
       LOCAL {{ localTime }} // CIT {{ shymkentTime }}
-    </div>
+    </h1>
 
     <!-- Right Actions -->
     <div class="flex items-center gap-2 md:gap-8">
